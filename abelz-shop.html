@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ABELZ SHOP — Premium Digital Store</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue-deep: #0a1628;
+    --blue-dark: #0d2045;
+    --blue-mid: #1a3a6b;
+    --blue-bright: #1e6fff;
+    --blue-light: #4d8fff;
+    --blue-glow: #63a5ff;
+    --white: #ffffff;
+    --white-soft: #f0f6ff;
+    --white-dim: rgba(255,255,255,0.08);
+    --white-border: rgba(255,255,255,0.12);
+    --gold: #ffd166;
+    --pink: #ff6b9d;
+    --green: #06d6a0;
+    --text-muted: rgba(255,255,255,0.55);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--blue-deep);
+    color: var(--white);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── BACKGROUND MESH ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 10%, rgba(30,111,255,0.18) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 80% 80%, rgba(99,165,255,0.12) 0%, transparent 55%),
+      radial-gradient(ellipse 40% 30% at 50% 50%, rgba(13,32,69,0.4) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── HERO / NAV ── */
+  header {
+    position: relative;
+    z-index: 10;
+    padding: 0 5vw;
+    background: rgba(10,22,40,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--white-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+    position: sticky;
+    top: 0;
+  }
+
+  .logo {
+    font-family: 'Sora', sans-serif;
+    font-weight: 800;
+    font-size: 1.4rem;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #fff 30%, var(--blue-glow));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .logo span {
+    background: linear-gradient(135deg, var(--blue-bright), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  nav { display: flex; gap: 8px; }
+
+  nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 20px;
+    transition: all 0.2s;
+  }
+
+  nav a:hover {
+    color: var(--white);
+    background: var(--white-dim);
+  }
+
+  /* ── HERO SECTION ── */
+  .hero {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 80px 5vw 60px;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(30,111,255,0.15);
+    border: 1px solid rgba(30,111,255,0.35);
+    border-radius: 30px;
+    padding: 5px 16px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--blue-glow);
+    letter-spacing: 0.5px;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+
+  .hero h1 {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(2.4rem, 6vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -2px;
+    margin-bottom: 16px;
+  }
+
+  .hero h1 .highlight {
+    background: linear-gradient(135deg, var(--blue-bright), var(--blue-glow), var(--white));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    max-width: 480px;
+    margin: 0 auto 36px;
+    line-height: 1.6;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--blue-bright), #0050d0);
+    color: white;
+    text-decoration: none;
+    padding: 12px 28px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.25s;
+    box-shadow: 0 4px 24px rgba(30,111,255,0.4);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(30,111,255,0.6);
+  }
+
+  .btn-ghost {
+    background: var(--white-dim);
+    border: 1px solid var(--white-border);
+    color: white;
+    text-decoration: none;
+    padding: 12px 28px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.25s;
+  }
+
+  .btn-ghost:hover {
+    background: rgba(255,255,255,0.14);
+    transform: translateY(-2px);
+  }
+
+  /* ── TRUST BAR ── */
+  .trust-bar {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    padding: 20px 5vw 50px;
+    border-bottom: 1px solid var(--white-border);
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .trust-item .icon { font-size: 1rem; }
+
+  /* ── SECTION WRAPPER ── */
+  .section {
+    position: relative;
+    z-index: 1;
+    padding: 64px 5vw;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .section-tag {
+    display: inline-block;
+    background: rgba(30,111,255,0.12);
+    border: 1px solid rgba(30,111,255,0.3);
+    color: var(--blue-glow);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 8px;
+  }
+
+  .section-desc {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+  }
+
+  /* ── CATEGORY DIVIDERS ── */
+  .cat-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 28px;
+    margin-top: 48px;
+  }
+
+  .cat-label:first-of-type { margin-top: 0; }
+
+  .cat-label h3 {
+    font-family: 'Sora', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .cat-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--white-border), transparent);
+  }
+
+  /* ── CARD GRID ── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  /* ── PRODUCT CARD ── */
+  .card {
+    background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+    border: 1px solid var(--white-border);
+    border-radius: 20px;
+    padding: 24px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--blue-bright), var(--blue-glow));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .card:hover {
+    border-color: rgba(30,111,255,0.4);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 48px rgba(30,111,255,0.12);
+  }
+
+  .card:hover::before { opacity: 1; }
+
+  .card-icon {
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .card-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: -0.3px;
+  }
+
+  .card-subtitle {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-bottom: 18px;
+  }
+
+  /* ── PLAN GROUP ── */
+  .plan-group {
+    margin-bottom: 16px;
+  }
+
+  .plan-group-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--blue-glow);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .plan-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px 10px;
+    border-radius: 8px;
+    transition: background 0.2s;
+    font-size: 0.84rem;
+  }
+
+  .plan-row:hover { background: var(--white-dim); }
+
+  .plan-name { color: rgba(255,255,255,0.75); }
+
+  .plan-price {
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    color: var(--white);
+    font-size: 0.88rem;
+  }
+
+  /* ── CARD BADGES ── */
+  .card-perks {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid var(--white-border);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .perk {
+    background: rgba(6,214,160,0.1);
+    border: 1px solid rgba(6,214,160,0.2);
+    color: var(--green);
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 20px;
+  }
+
+  /* ── DIAMOND LIST (FF) ── */
+  .dm-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px;
+    margin-bottom: 12px;
+  }
+
+  .dm-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 8px;
+    border-radius: 7px;
+    font-size: 0.8rem;
+    transition: background 0.2s;
+  }
+
+  .dm-row:hover { background: var(--white-dim); }
+
+  .dm-amt { color: rgba(255,255,255,0.7); }
+
+  .dm-price {
+    font-weight: 700;
+    font-size: 0.78rem;
+    color: var(--gold);
+  }
+
+  /* ── SECTION BG VARIANTS ── */
+  .section-alt {
+    background: linear-gradient(180deg, rgba(13,32,69,0.4), transparent);
+  }
+
+  /* ── PAYMENT SECTION ── */
+  .payment-section {
+    background: linear-gradient(135deg, rgba(13,32,69,0.9), rgba(10,22,40,0.95));
+    border-top: 1px solid var(--white-border);
+    text-align: center;
+    padding: 80px 5vw;
+    position: relative;
+    z-index: 1;
+  }
+
+  .payment-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(30,111,255,0.15), transparent);
+    pointer-events: none;
+  }
+
+  .wa-card {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 24px;
+    padding: 40px 60px;
+    position: relative;
+    z-index: 1;
+    max-width: 480px;
+    width: 100%;
+  }
+
+  .wa-icon {
+    width: 72px;
+    height: 72px;
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    box-shadow: 0 8px 32px rgba(37,211,102,0.4);
+  }
+
+  .wa-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+  }
+
+  .wa-number {
+    font-family: 'Sora', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--blue-glow);
+    letter-spacing: 1px;
+  }
+
+  .wa-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .wa-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    color: white;
+    text-decoration: none;
+    padding: 14px 36px;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: all 0.25s;
+    box-shadow: 0 4px 24px rgba(37,211,102,0.35);
+  }
+
+  .wa-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(37,211,102,0.5);
+  }
+
+  /* ── PAYMENT METHODS ── */
+  .pay-methods {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+
+  .pay-badge {
+    background: var(--white-dim);
+    border: 1px solid var(--white-border);
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.7);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 24px 5vw;
+    border-top: 1px solid var(--white-border);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  footer strong { color: var(--blue-glow); }
+
+  /* ── DIVIDER ── */
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--white-border), transparent);
+    margin: 0 5vw;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── SCROLL ANIM ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .card { animation: fadeUp 0.5s ease both; }
+  .card:nth-child(1) { animation-delay: 0.05s; }
+  .card:nth-child(2) { animation-delay: 0.12s; }
+  .card:nth-child(3) { animation-delay: 0.19s; }
+  .card:nth-child(4) { animation-delay: 0.26s; }
+  .card:nth-child(5) { animation-delay: 0.33s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    nav { display: none; }
+    .dm-grid { grid-template-columns: 1fr; }
+    .wa-card { padding: 32px 24px; }
+    .trust-bar { gap: 16px; }
+  }
+
+  /* ── ACCENT COLORS PER SECTION ── */
+  .section-watching .cat-label h3 { color: var(--gold); }
+  .section-games .cat-label h3 { color: #ff6b9d; }
+  .section-editing .cat-label h3 { color: #a78bfa; }
+  .section-music .cat-label h3 { color: var(--green); }
+
+  .section-watching .card::before { background: linear-gradient(90deg, var(--gold), #ffaa00); }
+  .section-games .card::before { background: linear-gradient(90deg, #ff6b9d, #ff3d71); }
+  .section-editing .card::before { background: linear-gradient(90deg, #a78bfa, #7c3aed); }
+  .section-music .card::before { background: linear-gradient(90deg, var(--green), #059669); }
+
+  .section-games .plan-group-label { color: #ff6b9d; }
+  .section-editing .plan-group-label { color: #a78bfa; }
+  .section-music .plan-group-label { color: var(--green); }
+
+  .section-games .perk { background: rgba(255,107,157,0.1); border-color: rgba(255,107,157,0.2); color: #ff6b9d; }
+  .section-editing .perk { background: rgba(167,139,250,0.1); border-color: rgba(167,139,250,0.2); color: #a78bfa; }
+  .section-music .perk { background: rgba(6,214,160,0.1); border-color: rgba(6,214,160,0.2); color: var(--green); }
+
+  .best-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--gold), #ff8c00);
+    color: #000;
+    font-size: 0.6rem;
+    font-weight: 800;
+    padding: 2px 7px;
+    border-radius: 6px;
+    letter-spacing: 0.5px;
+    vertical-align: middle;
+    margin-left: 6px;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header>
+  <div class="logo">ABELZ <span>SHOP</span></div>
+  <nav>
+    <a href="#watching">🎬 Watching</a>
+    <a href="#games">🎮 Games</a>
+    <a href="#editing">✨ Editing</a>
+    <a href="#music">🎵 Music</a>
+    <a href="#order">📦 Order</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">✦ Terpercaya · Legal · Anti Tipu ✦</div>
+  <h1>Premium Digital<br><span class="highlight">Serba Ada.</span><br>Harga Bersahabat.</h1>
+  <p>Streaming, games, editing, musik — semua tersedia di Abelz Shop dengan harga terbaik, proses cepat, dan garansi penuh.</p>
+  <div class="hero-cta">
+    <a href="#order" class="btn-primary">💬 Order Sekarang</a>
+    <a href="#watching" class="btn-ghost">Lihat Produk →</a>
+  </div>
+</div>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item"><span class="icon">💎</span> 100% Legal & Aman</div>
+  <div class="trust-item"><span class="icon">🛡️</span> Full Garansi Sesuai Durasi</div>
+  <div class="trust-item"><span class="icon">⚡</span> Proses Super Cepat</div>
+  <div class="trust-item"><span class="icon">🎯</span> Ribuan Pelanggan Puas</div>
+</div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- 1. WATCHING -->
+<!-- ══════════════════════════════════════ -->
+<div class="section section-watching" id="watching">
+  <div class="section-header">
+    <div class="section-tag">🎬 Section 1</div>
+    <h2 class="section-title">Streaming & Watching</h2>
+    <p class="section-desc">Hiburan premium tanpa batas — Netflix, Disney+, Viu, iQIYI</p>
+  </div>
+
+  <div class="card-grid">
+
+    <!-- NETFLIX -->
+    <div class="card">
+      <span class="card-icon">🎬</span>
+      <div class="card-title">Netflix Premium 4K</div>
+      <div class="card-subtitle">Ultra HD · All Device · Anti Hold</div>
+
+      <div class="plan-group">
+        <div class="plan-group-label">🍭 Sharing 1U1P <span class="best-badge">BEST</span></div>
+        <div class="plan-row"><span class="plan-name">1 Hari</span><span class="plan-price">Rp 7.000</span></div>
+        <div class="plan-row"><span class="plan-name">3 Hari</span><span class="plan-price">Rp 9.000</span></div>
+        <div class="plan-row"><span class="plan-name">7 Hari</span><span class="plan-price">Rp 18.000</span></div>
+        <div class="plan-row"><span class="plan-name">1 Bulan</span><span class="plan-price">Rp 28.000</span></div>
+      </div>
+      <div class="plan-group">
+        <div class="plan-group-label">🍭 Sharing 2U1P</div>
+        <div class="plan-row"><span class="plan-name">1 Hari</span><span class="plan-price">Rp 6.000</span></div>
+        <div class="plan-row"><span class="plan-name">1 Bulan</span><span class="plan-price">Rp 19.000</span></div>
+      </div>
+      <div class="plan-group">
+        <div class="plan-group-label">🍭 Privat & Semi</div>
+        <div class="plan-row"><span class="plan-name">Semi 1 Bulan</span><span class="plan-price">Rp 31.000</span></div>
+        <div class="plan-row"><span class="plan-name">Privat 1 Bulan</span><span class="plan-price">Rp 173.000</span></div>
+        <div class="plan-row"><span class="plan-name">Privat Nogar</span><span class="plan-price">Rp 107.000</span></div>
+      </div>
+
+      <div class="card-perks">
+        <span class="perk">💎 Aman & Legal</span>
+        <span class="perk">🛡️ Full Garansi</span>
+        <span class="perk">⚡ 5-15 Menit</span>
+      </div>
+    </div>
+
+    <!-- DISNEY+ -->
+    <div class="card">
+      <span class="card-icon">🏰</span>
+      <div class="card-title">Disney+ Hotstar</div>
+      <div class="card-subtitle">Ultra HD 4K · All Device · OTP Login</div>
+
+      <div class="plan-group">
+        <div class="plan-group-label">🌠 Sharing Plan (10U)</div>
+        <div class="plan-row"><span class="plan-name">1 Hari</span><span class="plan-price">Rp 7.000</span></div>
+        <div class="plan-row"><span class="plan-name">3 Hari</span><span class="plan-price">Rp 11.000</span></div>
+        <div class="plan-row"><span class="plan-name">7 Hari</span><span class="plan-price">Rp 16.000</span></div>
+        <div class="plan-row"><span class="plan-name">1 Bulan</span><span class="plan-price">Rp 18.000</span></div>
+      </div>
+      <div class="plan-group">
+        <div class="plan-group-label">🌠 Sharing Plan (5/6U)</div>
+        <div class="plan-row"><span class="plan-name">1 Bulan</span><span class="plan-price">Rp 27.000</span></div>
+      </div>
+      <div class="plan-group">
+        <div class="plan-group-label">🌠 Antilimit / Privat</div>
+        <div class="plan-row"><span class="plan-name">1 Bln Antilimit</span><span class="plan-price">Rp 52.000</span></div>
+        <div class="plan-row"><span class="plan-name">1 Bln Full Privat</span><span class="plan-price">Rp 87.000</span></div>
+      </div>
+
+      <div class="card-perks">
+        <span class="perk">⭐ Full Garansi</span>
+        <span class="perk">⭐ Ultra HD 4K</span>
+        <span class="perk">⭐ 1-30 Menit</span>
+      </div>
+    </div>
+
+    <!-- VIU -->
+    <div class="card">
+      <span class="card-icon">📽️</span>
+      <div class="card-title">Viu Premium</div>
+      <div class="card-subtitle">Clean · Fast · Trusted</div>
+
+      <div class="plan-group">
+        <div class="plan-group-label">🌷 Privat Plan</div>
+        <div class="plan-row"><span class="plan-name">1 Bulan Privat</span><span class="plan-price">Rp 3.000</span></div>
+        <div class="plan-row"><span class="plan-name">3 Bulan Privat</span><span class="plan-price">Rp 4.000</span></div>
+        <div class="plan-row"><span class="plan-name">6 Bulan Privat</span><span class="plan-price">Rp 5.000</span></div>
+        <div class="plan-row"><span class="plan-name">1 Tahun Privat</span><span class="plan-price">Rp 7.000</span></div>
+      </div>
+      <div class="plan-group">
+        <div class="plan-group-label">🌷 Sharing & Lifetime</div>
+        <div class="plan-row"><span class="plan-name">Viu Sharing 1 Bln</span><span class="plan-price">Rp 10.000</span></div>
+        <div class="plan-row"><span class="plan-name">Lifetime Account</span><span class="plan-price">Rp 12.000</span></div>
+      </div>
+
+      <div class="card-perks">
+        <span class="perk">✓ Full Garansi</span>
+        <span class="perk">✓ Legal 100%</span>
+        <span class="perk">✓ Trusted Seller</span>
+      </div>
+    </div>
+
+    <!-- iQIYI -->
+    <div class="card">
+      <span class="card-icon">🎬</span>
+      <div class="card-title">iQIYI VIP</div>
+      <div class="card-subtitle">UHD Quality · No Ads · Amanah</div>
+
+      <div class="plan-group">
+        <div class="plan-group-label">🌷 Price List</div>
+        <div class="plan-row"><span class="plan-name">1 Bln Sharing</span><span class="plan-price">Rp 6.500</span></div>
+        <div class="plan-row"><span class="plan-name">1 Bln Privat</span><span class="plan-price">Rp 28.500</span></div>
+      </div>
+
+      <div class="card-perks">
+        <span class="perk">💎 UHD Quality</span>
+        <span class="perk">🛡️ Full Garansi</span>
+        <span class="perk">⚡ Cepat & Legal</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- 2. GAMES -->
+<!-- ══════════════════════════════════════ -->
+<div class="section section-alt section-games" id="games">
+  <div class="section-header">
+    <div class="section-tag">🎮 Section 2</div>
+    <h2 class="section-title">Top Up Games</h2>
+    <p class="section-desc">Robux & Free Fire Diamond — proses kilat, harga terbaik</p>
+  </div>
+
+  <div class="card-grid">
+
+    <!-- ROBUX -->
+    <div class="card">
+      <span class="card-icon">🎀</span>
+      <div class="card-title">Robux Roblox</div>
+      <div class="card-subtitle">Via Login · Legal · V2L OFF</div>
+
+      <div class="plan-group">
+        <div class="plan-group-label">🍭 Via Login (A)</div>
+        <div class="plan-row"><span class="plan-name">80 R</span><span class="plan-price">Rp 20.000</span></div>
+        <div class="plan-row"><span class="plan-name">160 R</span><span class="plan-price">Rp 37.000</span></div>
+        <div class="plan-row"><span class="plan-name">240 R</span><span class="plan-price">Rp 50.000</span></div>
+        <div class="plan-row"><span class="plan-name">400 R</span><span class="plan-price">Rp 76.000</span></div>
+        <div class="plan-row"><span class="plan-name">800 R</span><span class="plan-price">Rp 145.500</span></div>
+        <div class="plan-row"><span class="plan-name">1.740 R</span><span class="plan-price">Rp 254.500</span></div>
+      </div>
+      <div class="plan-group">
+        <div class="plan-group-label">🍭 Via Login (B)</div>
+        <div class="plan-row"><span class="plan-name">500 R</span><span class="plan-price">Rp 78.500</span></div>
+        <div class="plan-row"><span class="plan-name">1.000 R</span><span class="plan-price">Rp 149.000</span></div>
+        <div class="plan-row"><span class="plan-name">2.500 R</span><span class="plan-price">Rp 364.000</span></div>
+        <div class="plan-row"><span class="plan-name">5.000 R</span><span class="plan-price">Rp 745.000</span></div>
+      </div>
+      <div class="plan-group">
+        <div class="plan-group-label">🍭 Roblox Premium</div>
+        <div class="plan-row"><span class="plan-name">450R + Premium</span><span class="plan-price">Rp 80.000</span></div>
+        <div class="plan-row"><span class="plan-name">1.000R + Premium</span><span class="plan-price">Rp 158.000</span></div>
+      </div>
+
+      <div class="card-perks">
+        <span class="perk">✓ Proses Cepat</span>
+        <span class="perk">✓ V2L OFF</span>
+        <span class="perk">✓ Wajib Stand By</span>
+      </div>
+    </div>
+
+    <!-- FREE FIRE -->
+    <div class="card">
+      <span class="card-icon">🎮</span>
+      <div class="card-title">Free Fire Diamond</div>
+      <div class="card-subtitle">100% Pure & Safe · Cukup ID+Zone</div>
+
+      <div class="plan-group">
+        <div class="plan-group-label">💕 Diamond List</div>
+        <div class="dm-grid">
+          <div class="dm-row"><span class="dm-amt">80 DM</span><span class="dm-price">15.000</span></div>
+          <div class="dm-row"><span class="dm-amt">100 DM</span><span class="dm-price">19.000</span></div>
+          <div class="dm-row"><span class="dm-amt">120 DM</span><span class="dm-price">21.000</span></div>
+          <div class="dm-row"><span class="dm-amt">130 DM</span><span class="dm-price">23.000</span></div>
+          <div class="dm-row"><span class="dm-amt">140 DM</span><span class="dm-price">24.000</span></div>
+          <div class="dm-row"><span class="dm-amt">150 DM</span><span class="dm-price">25.000</span></div>
+          <div class="dm-row"><span class="dm-amt">190 DM</span><span class="dm-price">31.000</span></div>
+          <div class="dm-row"><span class="dm-amt">200 DM</span><span class="dm-price">33.000</span></div>
+          <div class="dm-row"><span class="dm-amt">210 DM</span><span class="dm-price">33.000</span></div>
+          <div class="dm-row"><span class="dm-amt">280 DM</span><span class="dm-price">43.000</span></div>
+          <div class="dm-row"><span class="dm-amt">355 DM</span><span class="dm-price">53.000</span></div>
+          <div class="dm-row"><span class="dm-amt">425 DM</span><span class="dm-price">63.000</span></div>
+          <div class="dm-row"><span class="dm-amt">500 DM</span><span class="dm-price">74.000</span></div>
+          <div class="dm-row"><span class="dm-amt">565 DM</span><span class="dm-price">83.000</span></div>
+          <div class="dm-row"><span class="dm-amt">635 DM</span><span class="dm-price">93.000</span></div>
+          <div class="dm-row"><span class="dm-amt">720 DM</span><span class="dm-price">104.000</span></div>
+          <div class="dm-row"><span class="dm-amt">790 DM</span><span class="dm-price">114.000</span></div>
+          <div class="dm-row"><span class="dm-amt">860 DM</span><span class="dm-price">124.000</span></div>
+        </div>
+      </div>
+
+      <div class="card-perks">
+        <span class="perk">⚡ 1-10 Menit</span>
+        <span class="perk">🆔 ID+Zone Saja</span>
+        <span class="perk">🛡️ Legal 100%</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- 3. EDITING -->
+<!-- ══════════════════════════════════════ -->
+<div class="section section-editing" id="editing">
+  <div class="section-header">
+    <div class="section-tag">✨ Section 3</div>
+    <h2 class="section-title">Editing Tools</h2>
+    <p class="section-desc">Alight Motion, CapCut, Canva — buat konten lebih keren!</p>
+  </div>
+
+  <div class="card-grid">
+
+    <!-- ALIGHT MOTION -->
+    <div class="card">
+      <span class="card-icon">✦</span>
+      <div class="card-title">Alight Motion Premium</div>
+      <div class="card-subtitle">All Filter Unlocked · Proses 1-15 Menit</div>
+
+      <div class="plan-group">
+        <div class="plan-group-label">🌷 1 Years Plan</div>
+        <div class="plan-row"><span class="plan-name">1Y Privat</span><span class="plan-price">Rp 4.000</span></div>
+        <div class="plan-row"><span class="plan-name">1Y Acc Buyer</span><span class="plan-price">Rp 4.000</span></div>
+        <div class="plan-row"><span class="plan-name">1Y Acc High</span><span class="plan-price">Rp 8.000</span></div>
+        <div class="plan-row"><span class="plan-name">1Y Privat Gene</span><span class="plan-price">Rp 3.600</span></div>
+      </div>
+      <div class="plan-group">
+        <div class="plan-group-label">🌷 Other Durations</div>
+        <div class="plan-row"><span class="plan-name">2 Years Privat</span><span class="plan-price">Rp 5.000</span></div>
+      </div>
+      <div class="plan-group">
+        <div class="plan-group-label">🌷 Bulk / Grosir</div>
+        <div class="plan-row"><span class="plan-name">Bulk 10 Acc</span><span class="plan-price">Rp 6.000</span></div>
+        <div class="plan-row"><span class="plan-name">Bulk 1000 Acc</span><span class="plan-price">Rp 23.000</span></div>
+      </div>
+
+      <div class="card-perks">
+        <span class="perk">✓ Full Garansi</span>
+        <span class="perk">✓ All Filter Unlocked</span>
+        <span class="perk">⚡ 1-15 Menit</span>
+      </div>
+    </div>
+
+    <!-- CAPCUT -->
+    <div class="card">
+      <span class="card-icon">✂️</span>
+      <div class="card-title">CapCut Pro Premium</div>
+      <div class="card-subtitle">Unlock All Filter & Tool · Support All Device</div>
+
+      <div class="plan-group">
+        <div class="plan-group-label">🌷 Privat Plan</div>
+        <div class="plan-row"><span class="plan-name">7D Privat</span><span class="plan-price">Rp 4.000</span></div>
+        <div class="plan-row"><span class="plan-name">35D Privat</span><span class="plan-price">Rp 7.000</span></div>
+        <div class="plan-row"><span class="plan-name">1Y Privat</span><span class="plan-price">Rp 78.000</span></div>
+      </div>
+      <div class="plan-group">
+        <div class="plan-group-label">🌷 Sharing / Head</div>
+        <div class="plan-row"><span class="plan-name">35D Sharing</span><span class="plan-price">Rp 6.000</span></div>
+        <div class="plan-row"><span class="plan-name">Head Fam 35D</span><span class="plan-price">Rp 53.000</span></div>
+      </div>
+
+      <div class="card-perks">
+        <span class="perk">🛡️ Garansi Amanah</span>
+        <span class="perk">✓ All Filter</span>
+        <span class="perk">📱 All Device</span>
+      </div>
+    </div>
+
+    <!-- CANVA -->
+    <div class="card">
+      <span class="card-icon">🎨</span>
+      <div class="card-title">Canva Premium</div>
+      <div class="card-subtitle">Full Fitur · Aman & Legal · 1-15 Menit</div>
+
+      <div class="plan-group">
+        <div class="plan-group-label">✎ Member Plan</div>
+        <div class="plan-row"><span class="plan-name">1 Bulan</span><span class="plan-price">Rp 3.500</span></div>
+        <div class="plan-row"><span class="plan-name">1 Tahun</span><span class="plan-price">Rp 7.000</span></div>
+        <div class="plan-row"><span class="plan-name">Lifetime</span><span class="plan-price">Rp 9.000</span></div>
+      </div>
+      <div class="plan-group">
+        <div class="plan-group-label">✎ Owner / Head</div>
+        <div class="plan-row"><span class="plan-name">Owner 1 Bulan</span><span class="plan-price">Rp 9.000</span></div>
+        <div class="plan-row"><span class="plan-name">Admin Edu</span><span class="plan-price">Rp 52.000</span></div>
+        <div class="plan-row"><span class="plan-name">Head Bisnis</span><span class="plan-price">Rp 103.000</span></div>
+      </div>
+      <div class="plan-group">
+        <div class="plan-group-label">✎ Bulk / Grosir</div>
+        <div class="plan-row"><span class="plan-name">Bulk 5 Acc</span><span class="plan-price">Rp 6.000</span></div>
+      </div>
+
+      <div class="card-perks">
+        <span class="perk">✨ Full Premium</span>
+        <span class="perk">🛡️ Garansi Aman</span>
+        <span class="perk">⚡ 1-15 Menit</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- 4. MUSIC -->
+<!-- ══════════════════════════════════════ -->
+<div class="section section-alt section-music" id="music">
+  <div class="section-header">
+    <div class="section-tag">🎵 Section 4</div>
+    <h2 class="section-title">Music Streaming</h2>
+    <p class="section-desc">Spotify & Apple Music — dengerin musik tanpa iklan!</p>
+  </div>
+
+  <div class="card-grid">
+
+    <!-- SPOTIFY -->
+    <div class="card">
+      <span class="card-icon">🎧</span>
+      <div class="card-title">Spotify Premium</div>
+      <div class="card-subtitle">Full Fitur · All Device · 5-10 Menit</div>
+
+      <div class="plan-group">
+        <div class="plan-group-label">🎼 Price List</div>
+        <div class="plan-row"><span class="plan-name">1 Bulan Full Garansi</span><span class="plan-price">Rp 18.000</span></div>
+        <div class="plan-row"><span class="plan-name">3 Bulan Nogar</span><span class="plan-price">Rp 11.000</span></div>
+      </div>
+
+      <div class="card-perks">
+        <span class="perk">✨ Full Premium</span>
+        <span class="perk">📱 All Device</span>
+        <span class="perk">🛡️ Legal & Aman</span>
+        <span class="perk">⚡ 5-10 Menit</span>
+      </div>
+      <div style="margin-top:12px; font-size:0.72rem; color: var(--text-muted); font-style: italic;">*SnK: Nogar = No Garansi ♡</div>
+    </div>
+
+    <!-- APPLE MUSIC -->
+    <div class="card">
+      <span class="card-icon">🍎</span>
+      <div class="card-title">Apple Music Premium</div>
+      <div class="card-subtitle">High Quality Audio · Full Garansi · 1-30 Menit</div>
+
+      <div class="plan-group">
+        <div class="plan-group-label">🎼 Price List</div>
+        <div class="plan-row"><span class="plan-name">Fam Plan 1 Bulan</span><span class="plan-price">Rp 3.500</span></div>
+        <div class="plan-row"><span class="plan-name">Ind Plan 1 Bulan</span><span class="plan-price">Rp 6.000</span></div>
+        <div class="plan-row"><span class="plan-name">Fam Head 1 Bulan</span><span class="plan-price">Rp 7.000</span></div>
+        <div class="plan-row"><span class="plan-name">iMess/iOS 1 Bulan</span><span class="plan-price">Rp 7.500</span></div>
+      </div>
+
+      <div class="card-perks">
+        <span class="perk">✨ HQ Audio</span>
+        <span class="perk">🛡️ Full Garansi</span>
+        <span class="perk">✓ Aman & Legal</span>
+        <span class="perk">⚡ 1-30 Menit</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- 5. PAYMENT / ORDER -->
+<!-- ══════════════════════════════════════ -->
+<div class="payment-section" id="order">
+  <div class="section-header" style="margin-bottom:36px;">
+    <div class="section-tag">📦 Section 5</div>
+    <h2 class="section-title">Cara Order & Pembayaran</h2>
+    <p class="section-desc">Hubungi kami via WhatsApp — fast response, proses langsung!</p>
+  </div>
+
+  <div style="display:flex; justify-content:center; margin-bottom: 40px;">
+    <div class="wa-card">
+      <div class="wa-icon">📱</div>
+      <div class="wa-title">Chat WhatsApp</div>
+      <div class="wa-number">0819 9835 0661</div>
+      <div class="wa-desc">
+        Kirim pesan dengan format:<br>
+        <strong>Nama Produk · Paket · Nama/ID</strong><br><br>
+        Kami siap membantu 24/7 🙌
+      </div>
+      <a class="wa-btn" href="https://wa.me/6281998350661?text=Halo%20Abelz%20Shop%2C%20saya%20mau%20order!" target="_blank">
+        💬 Chat Sekarang
+      </a>
+      <div>
+        <div style="font-size:0.75rem; color:var(--text-muted); margin-bottom:8px;">Metode Pembayaran</div>
+        <div class="pay-methods">
+          <span class="pay-badge">QRIS</span>
+          <span class="pay-badge">Dana</span>
+          <span class="pay-badge">GoPay</span>
+          <span class="pay-badge">OVO</span>
+          <span class="pay-badge">Transfer Bank</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex; justify-content:center; gap:48px; flex-wrap:wrap; position:relative; z-index:1;">
+    <div style="text-align:center;">
+      <div style="font-size:2rem; margin-bottom:6px;">💎</div>
+      <div style="font-family:'Sora',sans-serif; font-weight:700; font-size:1rem;">100% Legal</div>
+      <div style="font-size:0.78rem; color:var(--text-muted);">Semua produk resmi</div>
+    </div>
+    <div style="text-align:center;">
+      <div style="font-size:2rem; margin-bottom:6px;">🛡️</div>
+      <div style="font-family:'Sora',sans-serif; font-weight:700; font-size:1rem;">Full Garansi</div>
+      <div style="font-size:0.78rem; color:var(--text-muted);">Sesuai durasi pesanan</div>
+    </div>
+    <div style="text-align:center;">
+      <div style="font-size:2rem; margin-bottom:6px;">⚡</div>
+      <div style="font-family:'Sora',sans-serif; font-weight:700; font-size:1rem;">Proses Cepat</div>
+      <div style="font-size:0.78rem; color:var(--text-muted);">Maks 30 menit</div>
+    </div>
+    <div style="text-align:center;">
+      <div style="font-size:2rem; margin-bottom:6px;">🤝</div>
+      <div style="font-family:'Sora',sans-serif; font-weight:700; font-size:1rem;">Anti Tipu</div>
+      <div style="font-size:0.78rem; color:var(--text-muted);">Terpercaya & amanah</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <strong>ABELZ SHOP</strong> — Premium Digital Store &nbsp;·&nbsp; WA: 0819 9835 0661 &nbsp;·&nbsp; Semua harga sudah termasuk pajak · 2025
+</footer>
+
+</body>
+</html>

@@ -3,525 +3,545 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ABELZ SHOP — Premium Digital Store</title>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Abelz Shop ✨</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Pacifico&display=swap" rel="stylesheet">
 <style>
   :root {
-    --blue-deep: #0a1628;
-    --blue-dark: #0d2045;
-    --blue-mid: #1a3a6b;
-    --blue-bright: #1e6fff;
-    --blue-light: #4d8fff;
-    --blue-glow: #63a5ff;
+    --baby: #d6eeff;
+    --baby2: #b8dfff;
+    --sky: #7ec8f7;
+    --accent: #3aabf0;
+    --deep: #1a7abf;
     --white: #ffffff;
-    --white-soft: #f0f6ff;
-    --white-dim: rgba(255,255,255,0.08);
-    --white-border: rgba(255,255,255,0.12);
-    --gold: #ffd166;
-    --pink: #ff6b9d;
-    --green: #06d6a0;
-    --text-muted: rgba(255,255,255,0.55);
+    --soft: #f0f8ff;
+    --text: #1a3a55;
+    --muted: #5a8aa8;
+    --pink: #ffb3d9;
+    --mint: #b3f0e0;
+    --yellow: #fff3b0;
+    --purple: #d4b3ff;
+    --card-bg: rgba(255,255,255,0.85);
+    --shadow: 0 8px 32px rgba(58,171,240,0.13);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  html { scroll-behavior: smooth; }
-
   body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--blue-deep);
-    color: var(--white);
+    font-family: 'Nunito', sans-serif;
+    background: linear-gradient(135deg, #e8f6ff 0%, #d0ecff 30%, #e8f6ff 60%, #c8e8ff 100%);
     min-height: 100vh;
+    color: var(--text);
+    position: relative;
     overflow-x: hidden;
   }
 
-  /* ── BACKGROUND MESH ── */
+  /* Floating bubbles background */
   body::before {
     content: '';
     position: fixed;
     inset: 0;
     background:
-      radial-gradient(ellipse 80% 60% at 20% 10%, rgba(30,111,255,0.18) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 50% at 80% 80%, rgba(99,165,255,0.12) 0%, transparent 55%),
-      radial-gradient(ellipse 40% 30% at 50% 50%, rgba(13,32,69,0.4) 0%, transparent 70%);
+      radial-gradient(circle at 10% 20%, rgba(126,200,247,0.18) 0%, transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(180,220,255,0.22) 0%, transparent 40%),
+      radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 60%);
     pointer-events: none;
     z-index: 0;
   }
 
-  /* ── HERO / NAV ── */
+  .bubble {
+    position: fixed;
+    border-radius: 50%;
+    opacity: 0.18;
+    animation: floatBubble linear infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  @keyframes floatBubble {
+    0% { transform: translateY(110vh) scale(0.8); opacity: 0; }
+    10% { opacity: 0.18; }
+    90% { opacity: 0.18; }
+    100% { transform: translateY(-10vh) scale(1.1); opacity: 0; }
+  }
+
+  /* ── HEADER ── */
   header {
-    position: relative;
-    z-index: 10;
-    padding: 0 5vw;
-    background: rgba(10,22,40,0.85);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--white-border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.82);
+    backdrop-filter: blur(18px);
+    border-bottom: 2px solid rgba(126,200,247,0.3);
+    box-shadow: 0 4px 24px rgba(58,171,240,0.1);
+    padding: 0 1.5rem;
+  }
+
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 68px;
-    position: sticky;
-    top: 0;
+    gap: 1rem;
   }
 
   .logo {
-    font-family: 'Sora', sans-serif;
-    font-weight: 800;
-    font-size: 1.4rem;
-    letter-spacing: -0.5px;
-    background: linear-gradient(135deg, #fff 30%, var(--blue-glow));
+    font-family: 'Pacifico', cursive;
+    font-size: 1.9rem;
+    background: linear-gradient(135deg, var(--accent), var(--deep));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 1px;
+    filter: drop-shadow(0 2px 8px rgba(58,171,240,0.25));
   }
 
   .logo span {
-    background: linear-gradient(135deg, var(--blue-bright), var(--gold));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-size: 1.3rem;
   }
 
-  nav { display: flex; gap: 8px; }
+  nav {
+    display: flex;
+    gap: 0.25rem;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+  }
+  nav::-webkit-scrollbar { display: none; }
 
   nav a {
-    color: var(--text-muted);
     text-decoration: none;
-    font-size: 0.82rem;
-    font-weight: 500;
-    padding: 6px 14px;
-    border-radius: 20px;
-    transition: all 0.2s;
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: var(--deep);
+    padding: 0.45rem 1rem;
+    border-radius: 50px;
+    border: 2px solid rgba(126,200,247,0.4);
+    background: rgba(255,255,255,0.7);
+    transition: all 0.22s ease;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
   }
 
-  nav a:hover {
-    color: var(--white);
-    background: var(--white-dim);
+  nav a:hover, nav a.active {
+    background: linear-gradient(135deg, var(--accent), var(--deep));
+    color: white;
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(58,171,240,0.35);
   }
 
-  /* ── HERO SECTION ── */
+  /* ── BOTTOM NAV (mobile) ── */
+  .bottom-nav { display: none; }
+
+  @media (max-width: 768px) {
+    header nav { display: none; }
+    .header-inner { justify-content: center; }
+
+    .bottom-nav {
+      display: flex;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(16px);
+      border-top: 2px solid rgba(126,200,247,0.35);
+      box-shadow: 0 -4px 20px rgba(58,171,240,0.15);
+      padding: 0.3rem 0.4rem;
+      padding-bottom: calc(0.3rem + env(safe-area-inset-bottom));
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      gap: 0;
+      justify-content: space-around;
+    }
+    .bottom-nav::-webkit-scrollbar { display: none; }
+
+    .bottom-nav a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.15rem;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.55rem;
+      font-weight: 800;
+      min-width: 48px;
+      padding: 0.35rem 0.2rem;
+      border-radius: 14px;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+    .bottom-nav a .bn-icon { font-size: 1.2rem; line-height: 1; }
+    .bottom-nav a.active, .bottom-nav a:hover {
+      background: linear-gradient(135deg, #e8f6ff, #c8e8ff);
+      color: var(--deep);
+    }
+    body { padding-bottom: 72px; }
+    .hero { padding: 2rem 1rem 1.5rem; }
+    .cards-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── HERO ── */
   .hero {
     position: relative;
     z-index: 1;
     text-align: center;
-    padding: 80px 5vw 60px;
+    padding: 4rem 1.5rem 2.5rem;
   }
 
   .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(30,111,255,0.15);
-    border: 1px solid rgba(30,111,255,0.35);
-    border-radius: 30px;
-    padding: 5px 16px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--blue-glow);
-    letter-spacing: 0.5px;
-    margin-bottom: 24px;
+    display: inline-block;
+    background: linear-gradient(135deg, var(--pink), var(--purple));
+    color: #5a1a7a;
+    font-size: 0.78rem;
+    font-weight: 800;
+    padding: 0.35rem 1.2rem;
+    border-radius: 50px;
+    margin-bottom: 1.2rem;
+    letter-spacing: 1px;
     text-transform: uppercase;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.04); }
   }
 
   .hero h1 {
-    font-family: 'Sora', sans-serif;
-    font-size: clamp(2.4rem, 6vw, 4.5rem);
-    font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -2px;
-    margin-bottom: 16px;
-  }
-
-  .hero h1 .highlight {
-    background: linear-gradient(135deg, var(--blue-bright), var(--blue-glow), var(--white));
+    font-family: 'Pacifico', cursive;
+    font-size: clamp(2.5rem, 7vw, 4.5rem);
+    background: linear-gradient(135deg, var(--accent) 0%, var(--deep) 50%, #5a1abf 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 4px 16px rgba(58,171,240,0.2));
   }
 
   .hero p {
-    color: var(--text-muted);
-    font-size: 1rem;
-    max-width: 480px;
-    margin: 0 auto 36px;
-    line-height: 1.6;
+    font-size: 1.05rem;
+    color: var(--muted);
+    font-weight: 700;
+    margin-bottom: 2rem;
   }
 
-  .hero-cta {
-    display: inline-flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .btn-primary {
-    background: linear-gradient(135deg, var(--blue-bright), #0050d0);
-    color: white;
-    text-decoration: none;
-    padding: 12px 28px;
-    border-radius: 12px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: all 0.25s;
-    box-shadow: 0 4px 24px rgba(30,111,255,0.4);
-  }
-
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(30,111,255,0.6);
-  }
-
-  .btn-ghost {
-    background: var(--white-dim);
-    border: 1px solid var(--white-border);
-    color: white;
-    text-decoration: none;
-    padding: 12px 28px;
-    border-radius: 12px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: all 0.25s;
-  }
-
-  .btn-ghost:hover {
-    background: rgba(255,255,255,0.14);
-    transform: translateY(-2px);
-  }
-
-  /* ── TRUST BAR ── */
-  .trust-bar {
-    position: relative;
-    z-index: 1;
+  .hero-pills {
     display: flex;
+    gap: 0.6rem;
     justify-content: center;
-    gap: 32px;
     flex-wrap: wrap;
-    padding: 20px 5vw 50px;
-    border-bottom: 1px solid var(--white-border);
+    margin-bottom: 2.5rem;
   }
 
-  .trust-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.82rem;
-    color: var(--text-muted);
-    font-weight: 500;
+  .pill {
+    background: rgba(255,255,255,0.9);
+    border: 2px solid var(--baby2);
+    color: var(--deep);
+    font-size: 0.8rem;
+    font-weight: 800;
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    box-shadow: var(--shadow);
   }
 
-  .trust-item .icon { font-size: 1rem; }
-
-  /* ── SECTION WRAPPER ── */
+  /* ── SECTION ── */
   .section {
     position: relative;
     z-index: 1;
-    padding: 64px 5vw;
+    max-width: 1200px;
+    margin: 0 auto 3rem;
+    padding: 0 1.5rem;
+    display: none;
   }
+
+  .section.active { display: block; }
 
   .section-header {
     text-align: center;
-    margin-bottom: 48px;
-  }
-
-  .section-tag {
-    display: inline-block;
-    background: rgba(30,111,255,0.12);
-    border: 1px solid rgba(30,111,255,0.3);
-    color: var(--blue-glow);
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    padding: 4px 14px;
-    border-radius: 20px;
-    margin-bottom: 12px;
+    margin-bottom: 2rem;
   }
 
   .section-title {
-    font-family: 'Sora', sans-serif;
-    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-    font-weight: 800;
-    letter-spacing: -1px;
-    margin-bottom: 8px;
+    font-family: 'Pacifico', cursive;
+    font-size: 2rem;
+    color: var(--deep);
+    margin-bottom: 0.4rem;
   }
 
-  .section-desc {
-    color: var(--text-muted);
-    font-size: 0.92rem;
-  }
-
-  /* ── CATEGORY DIVIDERS ── */
-  .cat-label {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 28px;
-    margin-top: 48px;
-  }
-
-  .cat-label:first-of-type { margin-top: 0; }
-
-  .cat-label h3 {
-    font-family: 'Sora', sans-serif;
-    font-size: 1.1rem;
+  .section-sub {
+    color: var(--muted);
     font-weight: 700;
-    white-space: nowrap;
+    font-size: 0.9rem;
   }
 
-  .cat-line {
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, var(--white-border), transparent);
-  }
-
-  /* ── CARD GRID ── */
-  .card-grid {
+  /* ── CARDS GRID ── */
+  .cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
   }
 
-  /* ── PRODUCT CARD ── */
   .card {
-    background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-    border: 1px solid var(--white-border);
-    border-radius: 20px;
-    padding: 24px;
-    transition: all 0.3s;
-    position: relative;
+    background: var(--card-bg);
+    border-radius: 24px;
+    border: 2px solid rgba(126,200,247,0.3);
+    box-shadow: var(--shadow);
     overflow: hidden;
-  }
-
-  .card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--blue-bright), var(--blue-glow));
-    opacity: 0;
-    transition: opacity 0.3s;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
   }
 
   .card:hover {
-    border-color: rgba(30,111,255,0.4);
-    transform: translateY(-4px);
-    box-shadow: 0 12px 48px rgba(30,111,255,0.12);
+    transform: translateY(-6px);
+    box-shadow: 0 16px 48px rgba(58,171,240,0.22);
+    border-color: var(--sky);
   }
 
-  .card:hover::before { opacity: 1; }
+  .card-header {
+    padding: 1.2rem 1.4rem 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    border-bottom: 2px solid rgba(126,200,247,0.2);
+  }
 
   .card-icon {
-    font-size: 1.8rem;
-    margin-bottom: 12px;
-    display: block;
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    flex-shrink: 0;
   }
 
   .card-title {
-    font-family: 'Sora', sans-serif;
     font-size: 1rem;
-    font-weight: 700;
-    margin-bottom: 4px;
-    letter-spacing: -0.3px;
+    font-weight: 900;
+    color: var(--deep);
+    line-height: 1.2;
   }
 
   .card-subtitle {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    margin-bottom: 18px;
-  }
-
-  /* ── PLAN GROUP ── */
-  .plan-group {
-    margin-bottom: 16px;
-  }
-
-  .plan-group-label {
     font-size: 0.72rem;
-    font-weight: 700;
-    color: var(--blue-glow);
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .plan-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 7px 10px;
-    border-radius: 8px;
-    transition: background 0.2s;
-    font-size: 0.84rem;
-  }
-
-  .plan-row:hover { background: var(--white-dim); }
-
-  .plan-name { color: rgba(255,255,255,0.75); }
-
-  .plan-price {
-    font-family: 'Sora', sans-serif;
-    font-weight: 700;
-    color: var(--white);
-    font-size: 0.88rem;
-  }
-
-  /* ── CARD BADGES ── */
-  .card-perks {
-    margin-top: 18px;
-    padding-top: 14px;
-    border-top: 1px solid var(--white-border);
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-
-  .perk {
-    background: rgba(6,214,160,0.1);
-    border: 1px solid rgba(6,214,160,0.2);
-    color: var(--green);
-    font-size: 0.68rem;
+    color: var(--muted);
     font-weight: 600;
-    padding: 3px 9px;
-    border-radius: 20px;
   }
 
-  /* ── DIAMOND LIST (FF) ── */
-  .dm-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 4px;
-    margin-bottom: 12px;
+  .card-body { padding: 0.8rem 1.4rem 1.2rem; }
+
+  /* Sub sections inside card */
+  .sub-section { margin-bottom: 1rem; }
+
+  .sub-title {
+    font-size: 0.75rem;
+    font-weight: 900;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
   }
 
-  .dm-row {
+  .sub-title::before {
+    content: '';
+    width: 16px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--sky));
+    border-radius: 2px;
+    display: inline-block;
+  }
+
+  .price-list { list-style: none; }
+
+  .price-list li {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 6px 8px;
-    border-radius: 7px;
-    font-size: 0.8rem;
-    transition: background 0.2s;
+    padding: 0.32rem 0;
+    border-bottom: 1px dashed rgba(126,200,247,0.3);
+    font-size: 0.82rem;
   }
 
-  .dm-row:hover { background: var(--white-dim); }
+  .price-list li:last-child { border-bottom: none; }
 
-  .dm-amt { color: rgba(255,255,255,0.7); }
+  .price-name { color: var(--text); font-weight: 600; }
 
-  .dm-price {
-    font-weight: 700;
-    font-size: 0.78rem;
-    color: var(--gold);
-  }
-
-  /* ── SECTION BG VARIANTS ── */
-  .section-alt {
-    background: linear-gradient(180deg, rgba(13,32,69,0.4), transparent);
-  }
-
-  /* ── PAYMENT SECTION ── */
-  .payment-section {
-    background: linear-gradient(135deg, rgba(13,32,69,0.9), rgba(10,22,40,0.95));
-    border-top: 1px solid var(--white-border);
-    text-align: center;
-    padding: 80px 5vw;
-    position: relative;
-    z-index: 1;
-  }
-
-  .payment-section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(30,111,255,0.15), transparent);
-    pointer-events: none;
-  }
-
-  .wa-card {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 24px;
-    padding: 40px 60px;
-    position: relative;
-    z-index: 1;
-    max-width: 480px;
-    width: 100%;
-  }
-
-  .wa-icon {
-    width: 72px;
-    height: 72px;
-    background: linear-gradient(135deg, #25d366, #128c7e);
+  .price-val {
+    font-weight: 900;
+    color: var(--deep);
+    background: var(--baby);
+    padding: 0.15rem 0.6rem;
     border-radius: 20px;
+    font-size: 0.78rem;
+    white-space: nowrap;
+  }
+
+  /* ── SPECIAL COLORS ── */
+  .icon-netflix { background: linear-gradient(135deg, #ff6b6b, #ff4444); }
+  .icon-disney  { background: linear-gradient(135deg, #1a6bff, #0033cc); }
+  .icon-viu     { background: linear-gradient(135deg, #ff9f43, #ff7f00); }
+  .icon-iqiyi   { background: linear-gradient(135deg, #00cc66, #009944); }
+  .icon-wetv    { background: linear-gradient(135deg, #9b59b6, #6c3483); }
+  .icon-prime   { background: linear-gradient(135deg, #00b4d8, #0077b6); }
+  .icon-bstation{ background: linear-gradient(135deg, #ff69b4, #ff1493); }
+  .icon-yt      { background: linear-gradient(135deg, #ff3333, #cc0000); }
+  .icon-vidio   { background: linear-gradient(135deg, #3aabf0, #1a7abf); }
+  .icon-melolo  { background: linear-gradient(135deg, #f7b731, #f9ca24); }
+  .icon-loklok  { background: linear-gradient(135deg, #26de81, #20bf6b); }
+  .icon-capcut  { background: linear-gradient(135deg, #333, #111); }
+  .icon-canva   { background: linear-gradient(135deg, #00c4cc, #0097a7); }
+  .icon-alight  { background: linear-gradient(135deg, #7c4dff, #651fff); }
+  .icon-wink    { background: linear-gradient(135deg, #fd79a8, #e84393); }
+  .icon-meitu   { background: linear-gradient(135deg, #ff758c, #ff4d6d); }
+  .icon-picsart { background: linear-gradient(135deg, #ff6348, #ff4500); }
+  .icon-ibis    { background: linear-gradient(135deg, #a29bfe, #6c5ce7); }
+  .icon-spotify { background: linear-gradient(135deg, #1db954, #158a3e); }
+  .icon-apple   { background: linear-gradient(135deg, #999, #555); }
+  .icon-chatgpt { background: linear-gradient(135deg, #10a37f, #0d8a6b); }
+  .icon-claude  { background: linear-gradient(135deg, #d97706, #b45309); }
+  .icon-gemini  { background: linear-gradient(135deg, #4285f4, #34a853); }
+  .icon-ff      { background: linear-gradient(135deg, #ff7043, #f4511e); }
+  .icon-ml      { background: linear-gradient(135deg, #1565c0, #0d47a1); }
+  .icon-roblox  { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+  .icon-ig      { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+  .icon-tiktok  { background: linear-gradient(135deg, #010101, #333); }
+
+  /* ── NOTE BOX ── */
+  .note-box {
+    background: linear-gradient(135deg, var(--yellow), #fff9cc);
+    border: 2px solid #f0d060;
+    border-radius: 16px;
+    padding: 0.9rem 1.2rem;
+    margin-top: 0.8rem;
+    font-size: 0.8rem;
+    color: #7a6010;
+    font-weight: 700;
+  }
+
+  .note-box p { margin-bottom: 0.2rem; }
+
+  /* ── PAYMENT & CONTACT ── */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .info-card {
+    background: var(--card-bg);
+    border-radius: 24px;
+    border: 2px solid rgba(126,200,247,0.3);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(8px);
+  }
+
+  .info-card h3 {
+    font-size: 1rem;
+    font-weight: 900;
+    color: var(--deep);
+    margin-bottom: 1rem;
     display: flex;
     align-items: center;
-    justify-content: center;
-    font-size: 2.2rem;
-    box-shadow: 0 8px 32px rgba(37,211,102,0.4);
+    gap: 0.5rem;
   }
 
-  .wa-title {
-    font-family: 'Sora', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-  }
-
-  .wa-number {
-    font-family: 'Sora', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--blue-glow);
-    letter-spacing: 1px;
-  }
-
-  .wa-desc {
+  .info-card ul { list-style: none; }
+  .info-card ul li {
     font-size: 0.85rem;
-    color: var(--text-muted);
-    line-height: 1.6;
-    text-align: center;
+    font-weight: 700;
+    color: var(--text);
+    padding: 0.3rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }
 
-  .wa-btn {
+  .snk-list { list-style: none; }
+  .snk-list li {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text);
+    padding: 0.4rem 0;
+    border-bottom: 1px dashed rgba(126,200,247,0.3);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* ── ORDER BUTTONS ── */
+  .order-btns {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+    padding-top: 1.5rem;
+    border-top: 2px dashed rgba(126,200,247,0.4);
+    position: relative;
+  }
+  .order-btns::before {
+    content: '📦 Cara Order';
+    position: absolute;
+    top: -0.7rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 0.1rem 1rem;
+    font-size: 0.72rem;
+    font-weight: 900;
+    color: var(--muted);
+    border-radius: 20px;
+    white-space: nowrap;
+    border: 2px solid rgba(126,200,247,0.4);
+  }
+
+  .btn-order {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 0.6rem;
+    padding: 0.9rem 2rem;
+    border-radius: 50px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 900;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  }
+
+  .btn-wa {
     background: linear-gradient(135deg, #25d366, #128c7e);
     color: white;
-    text-decoration: none;
-    padding: 14px 36px;
-    border-radius: 14px;
-    font-weight: 700;
-    font-size: 0.95rem;
-    transition: all 0.25s;
-    box-shadow: 0 4px 24px rgba(37,211,102,0.35);
   }
 
-  .wa-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(37,211,102,0.5);
+  .btn-tg {
+    background: linear-gradient(135deg, #2aabee, #1a7abf);
+    color: white;
   }
 
-  /* ── PAYMENT METHODS ── */
-  .pay-methods {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 8px;
-  }
-
-  .pay-badge {
-    background: var(--white-dim);
-    border: 1px solid var(--white-border);
-    border-radius: 8px;
-    padding: 6px 14px;
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: rgba(255,255,255,0.7);
+  .btn-order:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.18);
   }
 
   /* ── FOOTER ── */
@@ -529,550 +549,1397 @@
     position: relative;
     z-index: 1;
     text-align: center;
-    padding: 24px 5vw;
-    border-top: 1px solid var(--white-border);
-    font-size: 0.8rem;
-    color: var(--text-muted);
+    padding: 2rem 1.5rem;
+    background: rgba(255,255,255,0.7);
+    border-top: 2px solid rgba(126,200,247,0.3);
+    backdrop-filter: blur(8px);
   }
 
-  footer strong { color: var(--blue-glow); }
-
-  /* ── DIVIDER ── */
-  .section-divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--white-border), transparent);
-    margin: 0 5vw;
-    position: relative;
-    z-index: 1;
+  footer p {
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-weight: 700;
   }
 
-  /* ── SCROLL ANIM ── */
+  footer .logo-foot {
+    font-family: 'Pacifico', cursive;
+    font-size: 1.4rem;
+    background: linear-gradient(135deg, var(--accent), var(--deep));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Responsive */
+  /* mobile handled in nav section */
+
+  /* Entrance animation */
+  .card {
+    animation: fadeUp 0.5s ease both;
+  }
+
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  .card { animation: fadeUp 0.5s ease both; }
   .card:nth-child(1) { animation-delay: 0.05s; }
-  .card:nth-child(2) { animation-delay: 0.12s; }
-  .card:nth-child(3) { animation-delay: 0.19s; }
-  .card:nth-child(4) { animation-delay: 0.26s; }
-  .card:nth-child(5) { animation-delay: 0.33s; }
+  .card:nth-child(2) { animation-delay: 0.1s; }
+  .card:nth-child(3) { animation-delay: 0.15s; }
+  .card:nth-child(4) { animation-delay: 0.2s; }
+  .card:nth-child(5) { animation-delay: 0.25s; }
+  .card:nth-child(6) { animation-delay: 0.3s; }
+  .card:nth-child(7) { animation-delay: 0.35s; }
+  .card:nth-child(8) { animation-delay: 0.4s; }
 
-  /* ── RESPONSIVE ── */
-  @media (max-width: 600px) {
-    nav { display: none; }
-    .dm-grid { grid-template-columns: 1fr; }
-    .wa-card { padding: 32px 24px; }
-    .trust-bar { gap: 16px; }
-  }
-
-  /* ── ACCENT COLORS PER SECTION ── */
-  .section-watching .cat-label h3 { color: var(--gold); }
-  .section-games .cat-label h3 { color: #ff6b9d; }
-  .section-editing .cat-label h3 { color: #a78bfa; }
-  .section-music .cat-label h3 { color: var(--green); }
-
-  .section-watching .card::before { background: linear-gradient(90deg, var(--gold), #ffaa00); }
-  .section-games .card::before { background: linear-gradient(90deg, #ff6b9d, #ff3d71); }
-  .section-editing .card::before { background: linear-gradient(90deg, #a78bfa, #7c3aed); }
-  .section-music .card::before { background: linear-gradient(90deg, var(--green), #059669); }
-
-  .section-games .plan-group-label { color: #ff6b9d; }
-  .section-editing .plan-group-label { color: #a78bfa; }
-  .section-music .plan-group-label { color: var(--green); }
-
-  .section-games .perk { background: rgba(255,107,157,0.1); border-color: rgba(255,107,157,0.2); color: #ff6b9d; }
-  .section-editing .perk { background: rgba(167,139,250,0.1); border-color: rgba(167,139,250,0.2); color: #a78bfa; }
-  .section-music .perk { background: rgba(6,214,160,0.1); border-color: rgba(6,214,160,0.2); color: var(--green); }
-
-  .best-badge {
+  .sparkle {
     display: inline-block;
-    background: linear-gradient(135deg, var(--gold), #ff8c00);
-    color: #000;
-    font-size: 0.6rem;
-    font-weight: 800;
-    padding: 2px 7px;
-    border-radius: 6px;
-    letter-spacing: 0.5px;
-    vertical-align: middle;
-    margin-left: 6px;
-    text-transform: uppercase;
+    animation: spin 4s linear infinite;
   }
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* Tab buttons active */
+  nav a.active {
+    background: linear-gradient(135deg, var(--accent), var(--deep));
+    color: white;
+    border-color: var(--deep);
+  }
+
+  /* HERO section special */
+  #home { display: block; }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- Floating bubbles -->
+<div class="bubble" style="width:60px;height:60px;background:#7ec8f7;left:5%;animation-duration:14s;animation-delay:0s;"></div>
+<div class="bubble" style="width:40px;height:40px;background:#b3d9ff;left:20%;animation-duration:18s;animation-delay:3s;"></div>
+<div class="bubble" style="width:80px;height:80px;background:#d0ecff;left:50%;animation-duration:22s;animation-delay:6s;"></div>
+<div class="bubble" style="width:30px;height:30px;background:#7ec8f7;left:75%;animation-duration:16s;animation-delay:2s;"></div>
+<div class="bubble" style="width:55px;height:55px;background:#b8dfff;left:88%;animation-duration:20s;animation-delay:8s;"></div>
+<div class="bubble" style="width:45px;height:45px;background:#c8e8ff;left:35%;animation-duration:25s;animation-delay:11s;"></div>
+
 <header>
-  <div class="logo">ABELZ <span>SHOP</span></div>
-  <nav>
-    <a href="#watching">🎬 Watching</a>
-    <a href="#games">🎮 Games</a>
-    <a href="#editing">✨ Editing</a>
-    <a href="#music">🎵 Music</a>
-    <a href="#order">📦 Order</a>
-  </nav>
+  <div class="header-inner">
+    <div class="logo">Abelz <span>☁️</span> Shop</div>
+    <nav>
+      <a href="#" onclick="showSection('home',this)" class="active">🏠 Home</a>
+      <a href="#" onclick="showSection('streaming',this)">📺 Streaming</a>
+      <a href="#" onclick="showSection('editing',this)">✏️ Editing</a>
+      <a href="#" onclick="showSection('music',this)">🎵 Music</a>
+      <a href="#" onclick="showSection('ai',this)">🤖 AI</a>
+      <a href="#" onclick="showSection('game',this)">🎮 Top Up</a>
+      <a href="#" onclick="showSection('kebsos',this)">💫 Kebsos</a>
+    </nav>
+  </div>
 </header>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-badge">✦ Terpercaya · Legal · Anti Tipu ✦</div>
-  <h1>Premium Digital<br><span class="highlight">Serba Ada.</span><br>Harga Bersahabat.</h1>
-  <p>Streaming, games, editing, musik — semua tersedia di Abelz Shop dengan harga terbaik, proses cepat, dan garansi penuh.</p>
-  <div class="hero-cta">
-    <a href="#order" class="btn-primary">💬 Order Sekarang</a>
-    <a href="#watching" class="btn-ghost">Lihat Produk →</a>
+<!-- Bottom Navigation (Mobile) -->
+<nav class="bottom-nav" id="bottomNav">
+  <a href="#" onclick="showSection('home',this)" class="active" id="bn-home">
+    <span class="bn-icon">🏠</span>Home
+  </a>
+  <a href="#" onclick="showSection('streaming',this)" id="bn-streaming">
+    <span class="bn-icon">📺</span>Streaming
+  </a>
+  <a href="#" onclick="showSection('editing',this)" id="bn-editing">
+    <span class="bn-icon">✏️</span>Editing
+  </a>
+  <a href="#" onclick="showSection('music',this)" id="bn-music">
+    <span class="bn-icon">🎵</span>Music
+  </a>
+  <a href="#" onclick="showSection('ai',this)" id="bn-ai">
+    <span class="bn-icon">🤖</span>AI
+  </a>
+  <a href="#" onclick="showSection('game',this)" id="bn-game">
+    <span class="bn-icon">🎮</span>Top Up
+  </a>
+  <a href="#" onclick="showSection('kebsos',this)" id="bn-kebsos">
+    <span class="bn-icon">💫</span>Kebsos
+  </a>
+</nav>
+
+<!-- ═══════════════ HOME ═══════════════ -->
+<section id="home" class="section active">
+  <div class="hero">
+    <div class="hero-badge">✨ Terpercaya & Murah ✨</div>
+    <h1>Abelz Shop</h1>
+    <p>☁️ Tempat belanja akun premium, topup game & layanan digital terbaik ☁️</p>
+    <div class="hero-pills">
+      <span class="pill">📺 Streaming Apps</span>
+      <span class="pill">✏️ Editing Apps</span>
+      <span class="pill">🎵 Music Premium</span>
+      <span class="pill">🤖 AI Tools</span>
+      <span class="pill">🎮 Top Up Game</span>
+      <span class="pill">💫 Kebsos</span>
+    </div>
   </div>
-</div>
 
-<!-- TRUST BAR -->
-<div class="trust-bar">
-  <div class="trust-item"><span class="icon">💎</span> 100% Legal & Aman</div>
-  <div class="trust-item"><span class="icon">🛡️</span> Full Garansi Sesuai Durasi</div>
-  <div class="trust-item"><span class="icon">⚡</span> Proses Super Cepat</div>
-  <div class="trust-item"><span class="icon">🎯</span> Ribuan Pelanggan Puas</div>
-</div>
+  <!-- Terms & Conditions -->
+  <div class="info-grid" style="max-width:1200px;margin:0 auto;">
+    <div class="info-card">
+      <h3>📋 Terms & Conditions</h3>
+      <ul class="snk-list">
+        <li>☁️ Cek Stok sebelum transfer 🛒</li>
+        <li>☁️ Garansi Aktif jika patuh SnK 🛡️</li>
+        <li>☁️ Wajib Kirim SS login & logout 📸</li>
+        <li>☁️ Sabar ya, proses sesuai antrian ⏳</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <h3>💳 Payment Method</h3>
+      <ul>
+        <li>🤳 QRIS All Payment</li>
+        <li>💸 DANA · GOPAY</li>
+        <li>🛍️ OVO · SHOPEEPAY</li>
+        <li>🏦 Bank Transfer BCA</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <h3>🛒 Hubungi Kami</h3>
+      <ul>
+        <li>💌 WhatsApp: 081998350661</li>
+        <li>💌 Telegram: @abelzsh0p</li>
+      </ul>
+      <div style="margin-top:1rem;display:flex;gap:0.6rem;flex-wrap:wrap;">
+        <a href="https://wa.me/6281998350661?text=Halo%20Abelz%20Shop!%20Saya%20mau%20order%20%F0%9F%9B%92" target="_blank" class="btn-order btn-wa" style="font-size:0.82rem;padding:0.6rem 1.2rem;">📱 WhatsApp</a>
+        <a href="https://t.me/abelzsh0p?text=Halo%20Abelz%20Shop!%20Saya%20mau%20order%20%F0%9F%9B%92" target="_blank" class="btn-order btn-tg" style="font-size:0.82rem;padding:0.6rem 1.2rem;">✈️ Telegram</a>
+      </div>
+    </div>
+  </div>
 
-<!-- ══════════════════════════════════════ -->
-<!-- 1. WATCHING -->
-<!-- ══════════════════════════════════════ -->
-<div class="section section-watching" id="watching">
+  <div class="order-btns">
+    <a href="https://wa.me/6281998350661?text=Halo%20Abelz%20Shop!%20Saya%20mau%20order.%20Produk%20yang%20saya%20mau%3A%20%0ANama%3A%20%0ADurasi%3A%20%0AEmail%3A%20(jika%20diperlukan)%20%0ATotal%3A%20Rp" target="_blank" class="btn-order btn-wa">📱 Order via WhatsApp</a>
+    <a href="https://t.me/abelzsh0p?text=Halo%20Abelz%20Shop!%20Saya%20mau%20order.%20Produk%20yang%20saya%20mau%3A%20%0ANama%3A%20%0ADurasi%3A%20%0AEmail%3A%20(jika%20diperlukan)%20%0ATotal%3A%20Rp" target="_blank" class="btn-order btn-tg">✈️ Order via Telegram</a>
+  </div>
+</section>
+
+<!-- ═══════════════ STREAMING ═══════════════ -->
+<section id="streaming" class="section">
   <div class="section-header">
-    <div class="section-tag">🎬 Section 1</div>
-    <h2 class="section-title">Streaming & Watching</h2>
-    <p class="section-desc">Hiburan premium tanpa batas — Netflix, Disney+, Viu, iQIYI</p>
+    <div class="section-title">📺 Streaming Apps</div>
+    <div class="section-sub">Premium Cinematic Experience — Harga terjangkau, kualitas terbaik!</div>
   </div>
 
-  <div class="card-grid">
+  <div class="cards-grid">
 
     <!-- NETFLIX -->
     <div class="card">
-      <span class="card-icon">🎬</span>
-      <div class="card-title">Netflix Premium 4K</div>
-      <div class="card-subtitle">Ultra HD · All Device · Anti Hold</div>
-
-      <div class="plan-group">
-        <div class="plan-group-label">🍭 Sharing 1U1P <span class="best-badge">BEST</span></div>
-        <div class="plan-row"><span class="plan-name">1 Hari</span><span class="plan-price">Rp 7.000</span></div>
-        <div class="plan-row"><span class="plan-name">3 Hari</span><span class="plan-price">Rp 9.000</span></div>
-        <div class="plan-row"><span class="plan-name">7 Hari</span><span class="plan-price">Rp 18.000</span></div>
-        <div class="plan-row"><span class="plan-name">1 Bulan</span><span class="plan-price">Rp 28.000</span></div>
+      <div class="card-header">
+        <div class="card-icon icon-netflix">🎬</div>
+        <div>
+          <div class="card-title">NETFLIX PREMIUM</div>
+          <div class="card-subtitle">Premium Cinematic Experience</div>
+        </div>
       </div>
-      <div class="plan-group">
-        <div class="plan-group-label">🍭 Sharing 2U1P</div>
-        <div class="plan-row"><span class="plan-name">1 Hari</span><span class="plan-price">Rp 6.000</span></div>
-        <div class="plan-row"><span class="plan-name">1 Bulan</span><span class="plan-price">Rp 19.000</span></div>
-      </div>
-      <div class="plan-group">
-        <div class="plan-group-label">🍭 Privat & Semi</div>
-        <div class="plan-row"><span class="plan-name">Semi 1 Bulan</span><span class="plan-price">Rp 31.000</span></div>
-        <div class="plan-row"><span class="plan-name">Privat 1 Bulan</span><span class="plan-price">Rp 173.000</span></div>
-        <div class="plan-row"><span class="plan-name">Privat Nogar</span><span class="plan-price">Rp 107.000</span></div>
-      </div>
-
-      <div class="card-perks">
-        <span class="perk">💎 Aman & Legal</span>
-        <span class="perk">🛡️ Full Garansi</span>
-        <span class="perk">⚡ 5-15 Menit</span>
+      <div class="card-body">
+        <div class="sub-section">
+          <div class="sub-title">1P1U (1 Profil 1 User)</div>
+          <ul class="price-list">
+            <li><span class="price-name">1 Hari</span><span class="price-val">Rp7.000</span></li>
+            <li><span class="price-name">3 Hari</span><span class="price-val">Rp9.000</span></li>
+            <li><span class="price-name">5 Hari</span><span class="price-val">Rp12.000</span></li>
+            <li><span class="price-name">7 Hari</span><span class="price-val">Rp16.000</span></li>
+            <li><span class="price-name">1 Bulan</span><span class="price-val">Rp23.000</span></li>
+            <li><span class="price-name">2 Bulan</span><span class="price-val">Rp43.000</span></li>
+            <li><span class="price-name">3 Bulan</span><span class="price-val">Rp62.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">1P2U (1 Profil 2 User)</div>
+          <ul class="price-list">
+            <li><span class="price-name">1 Hari</span><span class="price-val">Rp6.000</span></li>
+            <li><span class="price-name">3 Hari</span><span class="price-val">Rp8.000</span></li>
+            <li><span class="price-name">5 Hari</span><span class="price-val">Rp10.000</span></li>
+            <li><span class="price-name">7 Hari</span><span class="price-val">Rp13.000</span></li>
+            <li><span class="price-name">1 Bulan</span><span class="price-val">Rp19.000</span></li>
+            <li><span class="price-name">2 Bulan</span><span class="price-val">Rp33.000</span></li>
+            <li><span class="price-name">3 Bulan</span><span class="price-val">Rp48.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">Semi Private</div>
+          <ul class="price-list">
+            <li><span class="price-name">1 Hari</span><span class="price-val">Rp10.000</span></li>
+            <li><span class="price-name">7 Hari</span><span class="price-val">Rp19.000</span></li>
+            <li><span class="price-name">14 Hari</span><span class="price-val">Rp25.000</span></li>
+            <li><span class="price-name">1 Bulan</span><span class="price-val">Rp30.000</span></li>
+            <li><span class="price-name">2 Bulan</span><span class="price-val">Rp53.000</span></li>
+            <li><span class="price-name">3 Bulan</span><span class="price-val">Rp77.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">Full Private</div>
+          <ul class="price-list">
+            <li><span class="price-name">1 Bulan</span><span class="price-val">Rp155.000</span></li>
+            <li><span class="price-name">2 Bulan</span><span class="price-val">Rp270.000</span></li>
+          </ul>
+        </div>
       </div>
     </div>
 
     <!-- DISNEY+ -->
     <div class="card">
-      <span class="card-icon">🏰</span>
-      <div class="card-title">Disney+ Hotstar</div>
-      <div class="card-subtitle">Ultra HD 4K · All Device · OTP Login</div>
-
-      <div class="plan-group">
-        <div class="plan-group-label">🌠 Sharing Plan (10U)</div>
-        <div class="plan-row"><span class="plan-name">1 Hari</span><span class="plan-price">Rp 7.000</span></div>
-        <div class="plan-row"><span class="plan-name">3 Hari</span><span class="plan-price">Rp 11.000</span></div>
-        <div class="plan-row"><span class="plan-name">7 Hari</span><span class="plan-price">Rp 16.000</span></div>
-        <div class="plan-row"><span class="plan-name">1 Bulan</span><span class="plan-price">Rp 18.000</span></div>
+      <div class="card-header">
+        <div class="card-icon icon-disney">🏰</div>
+        <div>
+          <div class="card-title">DISNEY+ HOTSTAR</div>
+          <div class="card-subtitle">Premium Cinematic Experience</div>
+        </div>
       </div>
-      <div class="plan-group">
-        <div class="plan-group-label">🌠 Sharing Plan (5/6U)</div>
-        <div class="plan-row"><span class="plan-name">1 Bulan</span><span class="plan-price">Rp 27.000</span></div>
-      </div>
-      <div class="plan-group">
-        <div class="plan-group-label">🌠 Antilimit / Privat</div>
-        <div class="plan-row"><span class="plan-name">1 Bln Antilimit</span><span class="plan-price">Rp 52.000</span></div>
-        <div class="plan-row"><span class="plan-name">1 Bln Full Privat</span><span class="plan-price">Rp 87.000</span></div>
-      </div>
-
-      <div class="card-perks">
-        <span class="perk">⭐ Full Garansi</span>
-        <span class="perk">⭐ Ultra HD 4K</span>
-        <span class="perk">⭐ 1-30 Menit</span>
+      <div class="card-body">
+        <div class="sub-section">
+          <div class="sub-title">Shared 6 User</div>
+          <ul class="price-list">
+            <li><span class="price-name">1 Hari</span><span class="price-val">Rp7.000</span></li>
+            <li><span class="price-name">3 Hari</span><span class="price-val">Rp11.000</span></li>
+            <li><span class="price-name">7 Hari</span><span class="price-val">Rp16.000</span></li>
+            <li><span class="price-name">1 Bulan</span><span class="price-val">Rp30.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">Shared 10 User</div>
+          <ul class="price-list">
+            <li><span class="price-name">1 Hari</span><span class="price-val">Rp6.000</span></li>
+            <li><span class="price-name">3 Hari</span><span class="price-val">Rp9.000</span></li>
+            <li><span class="price-name">7 Hari</span><span class="price-val">Rp13.000</span></li>
+            <li><span class="price-name">1 Bulan</span><span class="price-val">Rp19.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">Anti Limit</div>
+          <ul class="price-list">
+            <li><span class="price-name">1 Bulan</span><span class="price-val">Rp50.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">Private</div>
+          <ul class="price-list">
+            <li><span class="price-name">1 Bulan</span><span class="price-val">Rp87.000</span></li>
+          </ul>
+        </div>
       </div>
     </div>
 
     <!-- VIU -->
     <div class="card">
-      <span class="card-icon">📽️</span>
-      <div class="card-title">Viu Premium</div>
-      <div class="card-subtitle">Clean · Fast · Trusted</div>
-
-      <div class="plan-group">
-        <div class="plan-group-label">🌷 Privat Plan</div>
-        <div class="plan-row"><span class="plan-name">1 Bulan Privat</span><span class="plan-price">Rp 3.000</span></div>
-        <div class="plan-row"><span class="plan-name">3 Bulan Privat</span><span class="plan-price">Rp 4.000</span></div>
-        <div class="plan-row"><span class="plan-name">6 Bulan Privat</span><span class="plan-price">Rp 5.000</span></div>
-        <div class="plan-row"><span class="plan-name">1 Tahun Privat</span><span class="plan-price">Rp 7.000</span></div>
-      </div>
-      <div class="plan-group">
-        <div class="plan-group-label">🌷 Sharing & Lifetime</div>
-        <div class="plan-row"><span class="plan-name">Viu Sharing 1 Bln</span><span class="plan-price">Rp 10.000</span></div>
-        <div class="plan-row"><span class="plan-name">Lifetime Account</span><span class="plan-price">Rp 12.000</span></div>
-      </div>
-
-      <div class="card-perks">
-        <span class="perk">✓ Full Garansi</span>
-        <span class="perk">✓ Legal 100%</span>
-        <span class="perk">✓ Trusted Seller</span>
-      </div>
-    </div>
-
-    <!-- iQIYI -->
-    <div class="card">
-      <span class="card-icon">🎬</span>
-      <div class="card-title">iQIYI VIP</div>
-      <div class="card-subtitle">UHD Quality · No Ads · Amanah</div>
-
-      <div class="plan-group">
-        <div class="plan-group-label">🌷 Price List</div>
-        <div class="plan-row"><span class="plan-name">1 Bln Sharing</span><span class="plan-price">Rp 6.500</span></div>
-        <div class="plan-row"><span class="plan-name">1 Bln Privat</span><span class="plan-price">Rp 28.500</span></div>
-      </div>
-
-      <div class="card-perks">
-        <span class="perk">💎 UHD Quality</span>
-        <span class="perk">🛡️ Full Garansi</span>
-        <span class="perk">⚡ Cepat & Legal</span>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<div class="section-divider"></div>
-
-<!-- ══════════════════════════════════════ -->
-<!-- 2. GAMES -->
-<!-- ══════════════════════════════════════ -->
-<div class="section section-alt section-games" id="games">
-  <div class="section-header">
-    <div class="section-tag">🎮 Section 2</div>
-    <h2 class="section-title">Top Up Games</h2>
-    <p class="section-desc">Robux & Free Fire Diamond — proses kilat, harga terbaik</p>
-  </div>
-
-  <div class="card-grid">
-
-    <!-- ROBUX -->
-    <div class="card">
-      <span class="card-icon">🎀</span>
-      <div class="card-title">Robux Roblox</div>
-      <div class="card-subtitle">Via Login · Legal · V2L OFF</div>
-
-      <div class="plan-group">
-        <div class="plan-group-label">🍭 Via Login (A)</div>
-        <div class="plan-row"><span class="plan-name">80 R</span><span class="plan-price">Rp 20.000</span></div>
-        <div class="plan-row"><span class="plan-name">160 R</span><span class="plan-price">Rp 37.000</span></div>
-        <div class="plan-row"><span class="plan-name">240 R</span><span class="plan-price">Rp 50.000</span></div>
-        <div class="plan-row"><span class="plan-name">400 R</span><span class="plan-price">Rp 76.000</span></div>
-        <div class="plan-row"><span class="plan-name">800 R</span><span class="plan-price">Rp 145.500</span></div>
-        <div class="plan-row"><span class="plan-name">1.740 R</span><span class="plan-price">Rp 254.500</span></div>
-      </div>
-      <div class="plan-group">
-        <div class="plan-group-label">🍭 Via Login (B)</div>
-        <div class="plan-row"><span class="plan-name">500 R</span><span class="plan-price">Rp 78.500</span></div>
-        <div class="plan-row"><span class="plan-name">1.000 R</span><span class="plan-price">Rp 149.000</span></div>
-        <div class="plan-row"><span class="plan-name">2.500 R</span><span class="plan-price">Rp 364.000</span></div>
-        <div class="plan-row"><span class="plan-name">5.000 R</span><span class="plan-price">Rp 745.000</span></div>
-      </div>
-      <div class="plan-group">
-        <div class="plan-group-label">🍭 Roblox Premium</div>
-        <div class="plan-row"><span class="plan-name">450R + Premium</span><span class="plan-price">Rp 80.000</span></div>
-        <div class="plan-row"><span class="plan-name">1.000R + Premium</span><span class="plan-price">Rp 158.000</span></div>
-      </div>
-
-      <div class="card-perks">
-        <span class="perk">✓ Proses Cepat</span>
-        <span class="perk">✓ V2L OFF</span>
-        <span class="perk">✓ Wajib Stand By</span>
-      </div>
-    </div>
-
-    <!-- FREE FIRE -->
-    <div class="card">
-      <span class="card-icon">🎮</span>
-      <div class="card-title">Free Fire Diamond</div>
-      <div class="card-subtitle">100% Pure & Safe · Cukup ID+Zone</div>
-
-      <div class="plan-group">
-        <div class="plan-group-label">💕 Diamond List</div>
-        <div class="dm-grid">
-          <div class="dm-row"><span class="dm-amt">80 DM</span><span class="dm-price">15.000</span></div>
-          <div class="dm-row"><span class="dm-amt">100 DM</span><span class="dm-price">19.000</span></div>
-          <div class="dm-row"><span class="dm-amt">120 DM</span><span class="dm-price">21.000</span></div>
-          <div class="dm-row"><span class="dm-amt">130 DM</span><span class="dm-price">23.000</span></div>
-          <div class="dm-row"><span class="dm-amt">140 DM</span><span class="dm-price">24.000</span></div>
-          <div class="dm-row"><span class="dm-amt">150 DM</span><span class="dm-price">25.000</span></div>
-          <div class="dm-row"><span class="dm-amt">190 DM</span><span class="dm-price">31.000</span></div>
-          <div class="dm-row"><span class="dm-amt">200 DM</span><span class="dm-price">33.000</span></div>
-          <div class="dm-row"><span class="dm-amt">210 DM</span><span class="dm-price">33.000</span></div>
-          <div class="dm-row"><span class="dm-amt">280 DM</span><span class="dm-price">43.000</span></div>
-          <div class="dm-row"><span class="dm-amt">355 DM</span><span class="dm-price">53.000</span></div>
-          <div class="dm-row"><span class="dm-amt">425 DM</span><span class="dm-price">63.000</span></div>
-          <div class="dm-row"><span class="dm-amt">500 DM</span><span class="dm-price">74.000</span></div>
-          <div class="dm-row"><span class="dm-amt">565 DM</span><span class="dm-price">83.000</span></div>
-          <div class="dm-row"><span class="dm-amt">635 DM</span><span class="dm-price">93.000</span></div>
-          <div class="dm-row"><span class="dm-amt">720 DM</span><span class="dm-price">104.000</span></div>
-          <div class="dm-row"><span class="dm-amt">790 DM</span><span class="dm-price">114.000</span></div>
-          <div class="dm-row"><span class="dm-amt">860 DM</span><span class="dm-price">124.000</span></div>
+      <div class="card-header">
+        <div class="card-icon icon-viu">🌟</div>
+        <div>
+          <div class="card-title">VIU PREMIUM</div>
+          <div class="card-subtitle">Premium Cinematic Experience</div>
         </div>
       </div>
-
-      <div class="card-perks">
-        <span class="perk">⚡ 1-10 Menit</span>
-        <span class="perk">🆔 ID+Zone Saja</span>
-        <span class="perk">🛡️ Legal 100%</span>
+      <div class="card-body">
+        <div class="sub-section">
+          <div class="sub-title">Private</div>
+          <ul class="price-list">
+            <li><span class="price-name">1 Bulan</span><span class="price-val">Rp3.000</span></li>
+            <li><span class="price-name">3 Bulan</span><span class="price-val">Rp4.000</span></li>
+            <li><span class="price-name">6 Bulan</span><span class="price-val">Rp5.000</span></li>
+            <li><span class="price-name">1 Tahun</span><span class="price-val">Rp7.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">VIU + Sharing</div>
+          <ul class="price-list">
+            <li><span class="price-name">1 Bulan</span><span class="price-val">Rp10.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">Lifetime</div>
+          <ul class="price-list">
+            <li><span class="price-name">Lifetime</span><span class="price-val">Rp12.000</span></li>
+          </ul>
+        </div>
       </div>
     </div>
 
-  </div>
-</div>
-
-<div class="section-divider"></div>
-
-<!-- ══════════════════════════════════════ -->
-<!-- 3. EDITING -->
-<!-- ══════════════════════════════════════ -->
-<div class="section section-editing" id="editing">
-  <div class="section-header">
-    <div class="section-tag">✨ Section 3</div>
-    <h2 class="section-title">Editing Tools</h2>
-    <p class="section-desc">Alight Motion, CapCut, Canva — buat konten lebih keren!</p>
-  </div>
-
-  <div class="card-grid">
-
-    <!-- ALIGHT MOTION -->
+    <!-- IQIYI -->
     <div class="card">
-      <span class="card-icon">✦</span>
-      <div class="card-title">Alight Motion Premium</div>
-      <div class="card-subtitle">All Filter Unlocked · Proses 1-15 Menit</div>
-
-      <div class="plan-group">
-        <div class="plan-group-label">🌷 1 Years Plan</div>
-        <div class="plan-row"><span class="plan-name">1Y Privat</span><span class="plan-price">Rp 4.000</span></div>
-        <div class="plan-row"><span class="plan-name">1Y Acc Buyer</span><span class="plan-price">Rp 4.000</span></div>
-        <div class="plan-row"><span class="plan-name">1Y Acc High</span><span class="plan-price">Rp 8.000</span></div>
-        <div class="plan-row"><span class="plan-name">1Y Privat Gene</span><span class="plan-price">Rp 3.600</span></div>
+      <div class="card-header">
+        <div class="card-icon icon-iqiyi">🎥</div>
+        <div>
+          <div class="card-title">IQIYI PREMIUM</div>
+          <div class="card-subtitle">Premium Streaming Experience</div>
+        </div>
       </div>
-      <div class="plan-group">
-        <div class="plan-group-label">🌷 Other Durations</div>
-        <div class="plan-row"><span class="plan-name">2 Years Privat</span><span class="plan-price">Rp 5.000</span></div>
-      </div>
-      <div class="plan-group">
-        <div class="plan-group-label">🌷 Bulk / Grosir</div>
-        <div class="plan-row"><span class="plan-name">Bulk 10 Acc</span><span class="plan-price">Rp 6.000</span></div>
-        <div class="plan-row"><span class="plan-name">Bulk 1000 Acc</span><span class="plan-price">Rp 23.000</span></div>
-      </div>
-
-      <div class="card-perks">
-        <span class="perk">✓ Full Garansi</span>
-        <span class="perk">✓ All Filter Unlocked</span>
-        <span class="perk">⚡ 1-15 Menit</span>
+      <div class="card-body">
+        <div class="sub-section">
+          <div class="sub-title">Standar</div>
+          <ul class="price-list">
+            <li><span class="price-name">1 Bulan Sharing</span><span class="price-val">Rp7.000</span></li>
+            <li><span class="price-name">3 Bulan Sharing</span><span class="price-val">Rp12.500</span></li>
+            <li><span class="price-name">1 Tahun Sharing</span><span class="price-val">Rp15.000</span></li>
+            <li><span class="price-name">1 Bulan Privat</span><span class="price-val">Rp23.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">Premium</div>
+          <ul class="price-list">
+            <li><span class="price-name">1 Bulan Sharing</span><span class="price-val">Rp8.000</span></li>
+            <li><span class="price-name">3 Bulan Sharing</span><span class="price-val">Rp13.000</span></li>
+            <li><span class="price-name">1 Tahun Sharing</span><span class="price-val">Rp15.000</span></li>
+            <li><span class="price-name">1 Bulan Privat</span><span class="price-val">Rp35.000</span></li>
+          </ul>
+        </div>
       </div>
     </div>
+
+    <!-- WETV -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-wetv">💜</div>
+        <div>
+          <div class="card-title">WETV PREMIUM</div>
+          <div class="card-subtitle">Premium Streaming Experience</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="sub-section">
+          <div class="sub-title">Sharing</div>
+          <ul class="price-list">
+            <li><span class="price-name">1 Bulan 8 User</span><span class="price-val">Rp8.000</span></li>
+            <li><span class="price-name">1 Bulan 5 User</span><span class="price-val">Rp10.000</span></li>
+            <li><span class="price-name">1 Bulan 3 User</span><span class="price-val">Rp13.000</span></li>
+            <li><span class="price-name">3 Bulan Antilimit</span><span class="price-val">Rp19.000</span></li>
+            <li><span class="price-name">1 Tahun Antilimit</span><span class="price-val">Rp35.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">Private</div>
+          <ul class="price-list">
+            <li><span class="price-name">1 Bulan</span><span class="price-val">Rp27.000</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRIME VIDEO -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-prime">🎞️</div>
+        <div>
+          <div class="card-title">PRIME VIDEO</div>
+          <div class="card-subtitle">Premium Streaming Experience</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <ul class="price-list">
+          <li><span class="price-name">1 Bulan Shared</span><span class="price-val">Rp7.000</span></li>
+          <li><span class="price-name">1 Bulan Privat</span><span class="price-val">Rp13.000</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- BSTATION -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-bstation">🌸</div>
+        <div>
+          <div class="card-title">BSTATION PREMIUM</div>
+          <div class="card-subtitle">Premium Anime Experience</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="sub-section">
+          <div class="sub-title">Sharing</div>
+          <ul class="price-list">
+            <li><span class="price-name">1 Bulan</span><span class="price-val">Rp9.000</span></li>
+            <li><span class="price-name">3 Bulan</span><span class="price-val">Rp13.000</span></li>
+            <li><span class="price-name">1 Tahun</span><span class="price-val">Rp17.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">Private</div>
+          <ul class="price-list">
+            <li><span class="price-name">1 Bulan (405)</span><span class="price-val">Rp33.000</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- YOUTUBE -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-yt">▶️</div>
+        <div>
+          <div class="card-title">YOUTUBE PREMIUM</div>
+          <div class="card-subtitle">Premium Streaming Experience</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="sub-section">
+          <div class="sub-title">IndPlan</div>
+          <ul class="price-list">
+            <li><span class="price-name">1 Bln Acc Seller nogar</span><span class="price-val">Rp12.000</span></li>
+            <li><span class="price-name">1 Bln Acc Buyer nogar</span><span class="price-val">Rp10.000</span></li>
+            <li><span class="price-name">1 Bln Acc Buyer garansi</span><span class="price-val">Rp12.000</span></li>
+            <li><span class="price-name">3 Bln Full Garansi</span><span class="price-val">Rp34.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">FamPlan</div>
+          <ul class="price-list">
+            <li><span class="price-name">1 Bln Acc Buyer nogar</span><span class="price-val">Rp9.000</span></li>
+            <li><span class="price-name">1 Bln Acc Buyer garansi</span><span class="price-val">Rp10.000</span></li>
+            <li><span class="price-name">1 Bln Acc Seller garansi</span><span class="price-val">Rp14.000</span></li>
+            <li><span class="price-name">2 Bln Acc Seller garansi</span><span class="price-val">Rp16.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">Other</div>
+          <ul class="price-list">
+            <li><span class="price-name">3 Bulan Mixplan</span><span class="price-val">Rp25.000</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIDIO -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-vidio">📡</div>
+        <div>
+          <div class="card-title">VIDIO PREMIER</div>
+          <div class="card-subtitle">Premium Streaming Experience</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="sub-section">
+          <div class="sub-title">Vidio TV</div>
+          <ul class="price-list">
+            <li><span class="price-name">1 Tahun TV</span><span class="price-val">Rp6.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">Mobile (2 User)</div>
+          <ul class="price-list">
+            <li><span class="price-name">Sharing 1 Bulan</span><span class="price-val">Rp16.500</span></li>
+            <li><span class="price-name">Privat 1 Bulan</span><span class="price-val">Rp28.500</span></li>
+            <li><span class="price-name">Bulk 1 Bulan</span><span class="price-val">Rp26.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">All Device (2 User)</div>
+          <ul class="price-list">
+            <li><span class="price-name">Sharing 1 Bulan</span><span class="price-val">Rp18.000</span></li>
+            <li><span class="price-name">Privat 1 Bulan</span><span class="price-val">Rp30.500</span></li>
+            <li><span class="price-name">Bulk 1 Bulan</span><span class="price-val">Rp28.000</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- MELOLO -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-melolo">🎶</div>
+        <div>
+          <div class="card-title">MELOLO</div>
+          <div class="card-subtitle">Premium Streaming Experience</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <ul class="price-list">
+          <li><span class="price-name">1 Bulan Sharing</span><span class="price-val">Rp11.000</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- LOKLOK -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-loklok">🎭</div>
+        <div>
+          <div class="card-title">LOKLOK</div>
+          <div class="card-subtitle">Premium Streaming Experience</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="sub-section">
+          <div class="sub-title">Sharing (3 User)</div>
+          <ul class="price-list">
+            <li><span class="price-name">1 Bulan Basic (Mobile)</span><span class="price-val">Rp19.500</span></li>
+            <li><span class="price-name">1 Bulan Standar (All Device)</span><span class="price-val">Rp22.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">Private</div>
+          <ul class="price-list">
+            <li><span class="price-name">1 Bulan Basic (Mobile)</span><span class="price-val">Rp48.000</span></li>
+            <li><span class="price-name">1 Bulan Standar (All Device)</span><span class="price-val">Rp67.000</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /cards-grid -->
+
+  <div class="order-btns">
+    <a href="https://wa.me/6281998350661?text=Halo%20Abelz%20Shop!%20Saya%20mau%20order%20Streaming%20Apps%20%F0%9F%93%BA%0AProduk%20%3A%20%0ADurasi%20%3A%20%0ANama%20%3A%20%0ATotal%20%3A%20Rp" target="_blank" class="btn-order btn-wa">📱 Order via WhatsApp</a>
+    <a href="https://t.me/abelzsh0p?text=Halo%20Abelz%20Shop!%20Saya%20mau%20order%20Streaming%20Apps%20%F0%9F%93%BA%0AProduk%20%3A%20%0ADurasi%20%3A%20%0ANama%20%3A%20%0ATotal%20%3A%20Rp" target="_blank" class="btn-order btn-tg">✈️ Order via Telegram</a>
+  </div>
+</section>
+
+<!-- ═══════════════ EDITING ═══════════════ -->
+<section id="editing" class="section">
+  <div class="section-header">
+    <div class="section-title">✏️ Editing Apps</div>
+    <div class="section-sub">Edit konten makin keren dengan aplikasi premium!</div>
+  </div>
+  <div class="cards-grid">
 
     <!-- CAPCUT -->
     <div class="card">
-      <span class="card-icon">✂️</span>
-      <div class="card-title">CapCut Pro Premium</div>
-      <div class="card-subtitle">Unlock All Filter & Tool · Support All Device</div>
-
-      <div class="plan-group">
-        <div class="plan-group-label">🌷 Privat Plan</div>
-        <div class="plan-row"><span class="plan-name">7D Privat</span><span class="plan-price">Rp 4.000</span></div>
-        <div class="plan-row"><span class="plan-name">35D Privat</span><span class="plan-price">Rp 7.000</span></div>
-        <div class="plan-row"><span class="plan-name">1Y Privat</span><span class="plan-price">Rp 78.000</span></div>
+      <div class="card-header">
+        <div class="card-icon icon-capcut">🎬</div>
+        <div>
+          <div class="card-title">CAPCUT PREMIUM</div>
+          <div class="card-subtitle">Video Editing Premium</div>
+        </div>
       </div>
-      <div class="plan-group">
-        <div class="plan-group-label">🌷 Sharing / Head</div>
-        <div class="plan-row"><span class="plan-name">35D Sharing</span><span class="plan-price">Rp 6.000</span></div>
-        <div class="plan-row"><span class="plan-name">Head Fam 35D</span><span class="plan-price">Rp 53.000</span></div>
-      </div>
-
-      <div class="card-perks">
-        <span class="perk">🛡️ Garansi Amanah</span>
-        <span class="perk">✓ All Filter</span>
-        <span class="perk">📱 All Device</span>
+      <div class="card-body">
+        <div class="sub-section">
+          <div class="sub-title">Sharing</div>
+          <ul class="price-list">
+            <li><span class="price-name">7 Hari</span><span class="price-val">Rp4.000</span></li>
+            <li><span class="price-name">1 Bulan</span><span class="price-val">Rp6.000</span></li>
+            <li><span class="price-name">35 Hari</span><span class="price-val">Rp7.500</span></li>
+            <li><span class="price-name">1 Bulan Full Garansi</span><span class="price-val">Rp7.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">Private (Full Garansi)</div>
+          <ul class="price-list">
+            <li><span class="price-name">7 Hari</span><span class="price-val">Rp5.000</span></li>
+            <li><span class="price-name">14 Hari</span><span class="price-val">Rp6.000</span></li>
+            <li><span class="price-name">21 Hari</span><span class="price-val">Rp7.000</span></li>
+            <li><span class="price-name">28 Hari</span><span class="price-val">Rp8.500</span></li>
+            <li><span class="price-name">35 Hari</span><span class="price-val">Rp9.500</span></li>
+            <li><span class="price-name">42 Hari</span><span class="price-val">Rp11.000</span></li>
+            <li><span class="price-name">45 Hari</span><span class="price-val">Rp11.500</span></li>
+            <li><span class="price-name">180 Hari</span><span class="price-val">Rp45.000</span></li>
+            <li><span class="price-name">1 Tahun</span><span class="price-val">Rp80.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">Other</div>
+          <ul class="price-list">
+            <li><span class="price-name">CC Head (29 Member)</span><span class="price-val">Rp14.000</span></li>
+          </ul>
+        </div>
       </div>
     </div>
 
     <!-- CANVA -->
     <div class="card">
-      <span class="card-icon">🎨</span>
-      <div class="card-title">Canva Premium</div>
-      <div class="card-subtitle">Full Fitur · Aman & Legal · 1-15 Menit</div>
+      <div class="card-header">
+        <div class="card-icon icon-canva">🎨</div>
+        <div>
+          <div class="card-title">CANVA PREMIUM</div>
+          <div class="card-subtitle">Design Premium</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="sub-section">
+          <div class="sub-title">Member</div>
+          <ul class="price-list">
+            <li><span class="price-name">1 Bulan</span><span class="price-val">Rp1.500</span></li>
+            <li><span class="price-name">3 Bulan</span><span class="price-val">Rp4.500</span></li>
+            <li><span class="price-name">1 Tahun</span><span class="price-val">Rp8.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">Design</div>
+          <ul class="price-list">
+            <li><span class="price-name">1 Bulan</span><span class="price-val">Rp1.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">Admin</div>
+          <ul class="price-list">
+            <li><span class="price-name">1 Bulan</span><span class="price-val">Rp7.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">Owner</div>
+          <ul class="price-list">
+            <li><span class="price-name">1 Bulan</span><span class="price-val">Rp12.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">Head</div>
+          <ul class="price-list">
+            <li><span class="price-name">1 Bulan (No Garansi)</span><span class="price-val">Rp4.000</span></li>
+            <li><span class="price-name">1 Bulan (Full Garansi)</span><span class="price-val">Rp7.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">Other</div>
+          <ul class="price-list">
+            <li><span class="price-name">Edu Lifetime</span><span class="price-val">Rp9.000</span></li>
+            <li><span class="price-name">Lifetime</span><span class="price-val">Rp7.000</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
-      <div class="plan-group">
-        <div class="plan-group-label">✎ Member Plan</div>
-        <div class="plan-row"><span class="plan-name">1 Bulan</span><span class="plan-price">Rp 3.500</span></div>
-        <div class="plan-row"><span class="plan-name">1 Tahun</span><span class="plan-price">Rp 7.000</span></div>
-        <div class="plan-row"><span class="plan-name">Lifetime</span><span class="plan-price">Rp 9.000</span></div>
+    <!-- ALIGHT MOTION -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-alight">✨</div>
+        <div>
+          <div class="card-title">ALIGHT MOTION</div>
+          <div class="card-subtitle">Motion Design Premium</div>
+        </div>
       </div>
-      <div class="plan-group">
-        <div class="plan-group-label">✎ Owner / Head</div>
-        <div class="plan-row"><span class="plan-name">Owner 1 Bulan</span><span class="plan-price">Rp 9.000</span></div>
-        <div class="plan-row"><span class="plan-name">Admin Edu</span><span class="plan-price">Rp 52.000</span></div>
-        <div class="plan-row"><span class="plan-name">Head Bisnis</span><span class="plan-price">Rp 103.000</span></div>
+      <div class="card-body">
+        <ul class="price-list">
+          <li><span class="price-name">1 Tahun Generator</span><span class="price-val">Rp1.000</span></li>
+          <li><span class="price-name">1 Tahun Private Seller</span><span class="price-val">Rp4.000</span></li>
+          <li><span class="price-name">1 Tahun Private Buyer</span><span class="price-val">Rp5.000</span></li>
+        </ul>
       </div>
-      <div class="plan-group">
-        <div class="plan-group-label">✎ Bulk / Grosir</div>
-        <div class="plan-row"><span class="plan-name">Bulk 5 Acc</span><span class="plan-price">Rp 6.000</span></div>
-      </div>
+    </div>
 
-      <div class="card-perks">
-        <span class="perk">✨ Full Premium</span>
-        <span class="perk">🛡️ Garansi Aman</span>
-        <span class="perk">⚡ 1-15 Menit</span>
+    <!-- WINK -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-wink">💄</div>
+        <div>
+          <div class="card-title">WINK PREMIUM</div>
+          <div class="card-subtitle">Beauty Editing Premium</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="sub-section">
+          <div class="sub-title">Buyer</div>
+          <ul class="price-list">
+            <li><span class="price-name">1 Minggu</span><span class="price-val">Rp8.000</span></li>
+            <li><span class="price-name">1 Bulan Renew</span><span class="price-val">Rp15.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">Seller</div>
+          <ul class="price-list">
+            <li><span class="price-name">Shared 1 Minggu</span><span class="price-val">Rp10.000</span></li>
+            <li><span class="price-name">Shared 1 Bulan</span><span class="price-val">Rp20.000</span></li>
+            <li><span class="price-name">Private 1 Bulan</span><span class="price-val">Rp32.000</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- MEITU -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-meitu">🌹</div>
+        <div>
+          <div class="card-title">MEITU PREMIUM</div>
+          <div class="card-subtitle">Photo Editing Premium</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="sub-section">
+          <div class="sub-title">Buyer</div>
+          <ul class="price-list">
+            <li><span class="price-name">7 Hari</span><span class="price-val">Rp2.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">Seller</div>
+          <ul class="price-list">
+            <li><span class="price-name">7 Hari Private</span><span class="price-val">Rp7.000</span></li>
+            <li><span class="price-name">1 Bulan Sharing</span><span class="price-val">Rp12.000</span></li>
+            <li><span class="price-name">1 Bulan Private</span><span class="price-val">Rp21.000</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- PICSART -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-picsart">🖼️</div>
+        <div>
+          <div class="card-title">PICSART PREMIUM</div>
+          <div class="card-subtitle">Photo Editing Premium</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <ul class="price-list">
+          <li><span class="price-name">1 Bulan Sharing</span><span class="price-val">Rp7.000</span></li>
+          <li><span class="price-name">1 Bulan Private</span><span class="price-val">Rp9.000</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- IBIS PAINT X -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-ibis">🖌️</div>
+        <div>
+          <div class="card-title">IBIS PAINT X</div>
+          <div class="card-subtitle">Digital Art Premium</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="sub-title">1 Tahun</div>
+        <ul class="price-list">
+          <li><span class="price-name">iOS</span><span class="price-val">Rp15.000</span></li>
+          <li><span class="price-name">Android</span><span class="price-val">Rp13.000</span></li>
+        </ul>
       </div>
     </div>
 
   </div>
-</div>
-
-<div class="section-divider"></div>
-
-<!-- ══════════════════════════════════════ -->
-<!-- 4. MUSIC -->
-<!-- ══════════════════════════════════════ -->
-<div class="section section-alt section-music" id="music">
-  <div class="section-header">
-    <div class="section-tag">🎵 Section 4</div>
-    <h2 class="section-title">Music Streaming</h2>
-    <p class="section-desc">Spotify & Apple Music — dengerin musik tanpa iklan!</p>
+  <div class="order-btns">
+    <a href="https://wa.me/6281998350661?text=Halo%20Abelz%20Shop!%20Saya%20mau%20order%20Editing%20Apps%20%E2%9C%8F%EF%B8%8F%0AProduk%20%3A%20%0ADurasi%20%3A%20%0ANama%20%3A%20%0ATotal%20%3A%20Rp" target="_blank" class="btn-order btn-wa">📱 Order via WhatsApp</a>
+    <a href="https://t.me/abelzsh0p?text=Halo%20Abelz%20Shop!%20Saya%20mau%20order%20Editing%20Apps%20%E2%9C%8F%EF%B8%8F%0AProduk%20%3A%20%0ADurasi%20%3A%20%0ANama%20%3A%20%0ATotal%20%3A%20Rp" target="_blank" class="btn-order btn-tg">✈️ Order via Telegram</a>
   </div>
+</section>
 
-  <div class="card-grid">
+<!-- ═══════════════ MUSIC ═══════════════ -->
+<section id="music" class="section">
+  <div class="section-header">
+    <div class="section-title">🎵 Music Premium</div>
+    <div class="section-sub">Dengerin musik favorit tanpa iklan & unlimited!</div>
+  </div>
+  <div class="cards-grid">
 
     <!-- SPOTIFY -->
     <div class="card">
-      <span class="card-icon">🎧</span>
-      <div class="card-title">Spotify Premium</div>
-      <div class="card-subtitle">Full Fitur · All Device · 5-10 Menit</div>
-
-      <div class="plan-group">
-        <div class="plan-group-label">🎼 Price List</div>
-        <div class="plan-row"><span class="plan-name">1 Bulan Full Garansi</span><span class="plan-price">Rp 18.000</span></div>
-        <div class="plan-row"><span class="plan-name">3 Bulan Nogar</span><span class="plan-price">Rp 11.000</span></div>
+      <div class="card-header">
+        <div class="card-icon icon-spotify">🎧</div>
+        <div>
+          <div class="card-title">SPOTIFY PREMIUM</div>
+          <div class="card-subtitle">Premium Music Experience</div>
+        </div>
       </div>
-
-      <div class="card-perks">
-        <span class="perk">✨ Full Premium</span>
-        <span class="perk">📱 All Device</span>
-        <span class="perk">🛡️ Legal & Aman</span>
-        <span class="perk">⚡ 5-10 Menit</span>
+      <div class="card-body">
+        <div class="sub-section">
+          <div class="sub-title">IndPlan (No Garansi)</div>
+          <ul class="price-list">
+            <li><span class="price-name">1 Bulan</span><span class="price-val">Rp12.000</span></li>
+            <li><span class="price-name">3 Bulan</span><span class="price-val">Rp13.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">IndPlan (Garansi)</div>
+          <ul class="price-list">
+            <li><span class="price-name">1 Bulan</span><span class="price-val">Rp19.000</span></li>
+            <li><span class="price-name">2 Bulan</span><span class="price-val">Rp23.000</span></li>
+            <li><span class="price-name">3 Bulan</span><span class="price-val">Rp34.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">Family Plan (Garansi)</div>
+          <ul class="price-list">
+            <li><span class="price-name">1 Bulan</span><span class="price-val">Rp23.000</span></li>
+            <li><span class="price-name">2 Bulan</span><span class="price-val">Rp30.000</span></li>
+            <li><span class="price-name">3 Bulan</span><span class="price-val">Rp42.500</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">Email Buyer</div>
+          <ul class="price-list">
+            <li><span class="price-name">1 Bulan</span><span class="price-val">Rp23.000</span></li>
+            <li><span class="price-name">2 Bulan</span><span class="price-val">Rp34.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">Student Plan</div>
+          <ul class="price-list">
+            <li><span class="price-name">1 Bulan (link)</span><span class="price-val">Rp5.000</span></li>
+            <li><span class="price-name">1 Bulan (no garansi)</span><span class="price-val">Rp13.500</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">Head Plan</div>
+          <ul class="price-list">
+            <li><span class="price-name">2 Bulan (invite 5 akun)</span><span class="price-val">Rp75.000</span></li>
+          </ul>
+        </div>
+        <div class="note-box">
+          <p>📝 Indplan khusus Android</p>
+        </div>
       </div>
-      <div style="margin-top:12px; font-size:0.72rem; color: var(--text-muted); font-style: italic;">*SnK: Nogar = No Garansi ♡</div>
     </div>
 
     <!-- APPLE MUSIC -->
     <div class="card">
-      <span class="card-icon">🍎</span>
-      <div class="card-title">Apple Music Premium</div>
-      <div class="card-subtitle">High Quality Audio · Full Garansi · 1-30 Menit</div>
-
-      <div class="plan-group">
-        <div class="plan-group-label">🎼 Price List</div>
-        <div class="plan-row"><span class="plan-name">Fam Plan 1 Bulan</span><span class="plan-price">Rp 3.500</span></div>
-        <div class="plan-row"><span class="plan-name">Ind Plan 1 Bulan</span><span class="plan-price">Rp 6.000</span></div>
-        <div class="plan-row"><span class="plan-name">Fam Head 1 Bulan</span><span class="plan-price">Rp 7.000</span></div>
-        <div class="plan-row"><span class="plan-name">iMess/iOS 1 Bulan</span><span class="plan-price">Rp 7.500</span></div>
+      <div class="card-header">
+        <div class="card-icon icon-apple">🎵</div>
+        <div>
+          <div class="card-title">APPLE MUSIC</div>
+          <div class="card-subtitle">Premium Music Experience</div>
+        </div>
       </div>
-
-      <div class="card-perks">
-        <span class="perk">✨ HQ Audio</span>
-        <span class="perk">🛡️ Full Garansi</span>
-        <span class="perk">✓ Aman & Legal</span>
-        <span class="perk">⚡ 1-30 Menit</span>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<div class="section-divider"></div>
-
-<!-- ══════════════════════════════════════ -->
-<!-- 5. PAYMENT / ORDER -->
-<!-- ══════════════════════════════════════ -->
-<div class="payment-section" id="order">
-  <div class="section-header" style="margin-bottom:36px;">
-    <div class="section-tag">📦 Section 5</div>
-    <h2 class="section-title">Cara Order & Pembayaran</h2>
-    <p class="section-desc">Hubungi kami via WhatsApp — fast response, proses langsung!</p>
-  </div>
-
-  <div style="display:flex; justify-content:center; margin-bottom: 40px;">
-    <div class="wa-card">
-      <div class="wa-icon">📱</div>
-      <div class="wa-title">Chat WhatsApp</div>
-      <div class="wa-number">0819 9835 0661</div>
-      <div class="wa-desc">
-        Kirim pesan dengan format:<br>
-        <strong>Nama Produk · Paket · Nama/ID</strong><br><br>
-        Kami siap membantu 24/7 🙌
-      </div>
-      <a class="wa-btn" href="https://wa.me/6281998350661?text=Halo%20Abelz%20Shop%2C%20saya%20mau%20order!" target="_blank">
-        💬 Chat Sekarang
-      </a>
-      <div>
-        <div style="font-size:0.75rem; color:var(--text-muted); margin-bottom:8px;">Metode Pembayaran</div>
-        <div class="pay-methods">
-          <span class="pay-badge">QRIS</span>
-          <span class="pay-badge">Dana</span>
-          <span class="pay-badge">GoPay</span>
-          <span class="pay-badge">OVO</span>
-          <span class="pay-badge">Transfer Bank</span>
+      <div class="card-body">
+        <div class="sub-section">
+          <div class="sub-title">Via Invite</div>
+          <ul class="price-list">
+            <li><span class="price-name">1 Bulan</span><span class="price-val">Rp7.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">IndPlan</div>
+          <ul class="price-list">
+            <li><span class="price-name">1 Bulan</span><span class="price-val">Rp7.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">Family Plan</div>
+          <ul class="price-list">
+            <li><span class="price-name">1 Bulan</span><span class="price-val">Rp4.500</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">Family Head</div>
+          <ul class="price-list">
+            <li><span class="price-name">1 Bulan</span><span class="price-val">Rp10.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">iOS / iMessage</div>
+          <ul class="price-list">
+            <li><span class="price-name">1 Bulan</span><span class="price-val">Rp8.500</span></li>
+          </ul>
         </div>
       </div>
     </div>
+
+  </div>
+  <div class="order-btns">
+    <a href="https://wa.me/6281998350661?text=Halo%20Abelz%20Shop!%20Saya%20mau%20order%20Music%20Premium%20%F0%9F%8E%B5%0AProduk%20%3A%20%0ADurasi%20%3A%20%0ANama%20%3A%20%0ATotal%20%3A%20Rp" target="_blank" class="btn-order btn-wa">📱 Order via WhatsApp</a>
+    <a href="https://t.me/abelzsh0p?text=Halo%20Abelz%20Shop!%20Saya%20mau%20order%20Music%20Premium%20%F0%9F%8E%B5%0AProduk%20%3A%20%0ADurasi%20%3A%20%0ANama%20%3A%20%0ATotal%20%3A%20Rp" target="_blank" class="btn-order btn-tg">✈️ Order via Telegram</a>
+  </div>
+</section>
+
+<!-- ═══════════════ AI ═══════════════ -->
+<section id="ai" class="section">
+  <div class="section-header">
+    <div class="section-title">🤖 AI Premium</div>
+    <div class="section-sub">Akses AI terbaik dengan harga terjangkau!</div>
+  </div>
+  <div class="cards-grid">
+
+    <!-- CHATGPT -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-chatgpt">🧠</div>
+        <div>
+          <div class="card-title">CHATGPT</div>
+          <div class="card-subtitle">Smart AI Assistant</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="sub-section">
+          <div class="sub-title">ChatGPT Pro</div>
+          <ul class="price-list">
+            <li><span class="price-name">Via Invite 1 Bulan</span><span class="price-val">Rp16.000</span></li>
+            <li><span class="price-name">Head 1 Bulan</span><span class="price-val">Rp60.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">ChatGPT Plus</div>
+          <ul class="price-list">
+            <li><span class="price-name">Share Invite 1 Bulan</span><span class="price-val">Rp13.000</span></li>
+            <li><span class="price-name">Private Invite 1 Bulan</span><span class="price-val">Rp27.000</span></li>
+          </ul>
+        </div>
+        <div class="note-box">
+          <p>📝 Garansi 25–27 Hari (S&K berlaku)</p>
+          <p>📝 Head max 4 device</p>
+          <p>📝 Wajib OTP via admin</p>
+          <p>📝 Bukti login max 1x24 jam</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CLAUDE AI -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-claude">✍️</div>
+        <div>
+          <div class="card-title">CLAUDE AI</div>
+          <div class="card-subtitle">Premium Writing AI</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <ul class="price-list">
+          <li><span class="price-name">1 Bulan</span><span class="price-val">Rp37.000</span></li>
+          <li><span class="price-name">3 Bulan</span><span class="price-val">Rp77.000</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- GEMINI AI -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-gemini">💎</div>
+        <div>
+          <div class="card-title">GEMINI AI</div>
+          <div class="card-subtitle">Smart AI + 2TB Storage</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="sub-section">
+          <div class="sub-title">Monthly Plan</div>
+          <ul class="price-list">
+            <li><span class="price-name">Privat 1 Bulan</span><span class="price-val">Rp9.500</span></li>
+            <li><span class="price-name">Invite 1 Bulan</span><span class="price-val">Rp6.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">Yearly Plan</div>
+          <ul class="price-list">
+            <li><span class="price-name">Privat 1 Tahun</span><span class="price-val">Rp19.000</span></li>
+            <li><span class="price-name">Head 1 Tahun</span><span class="price-val">Rp34.000</span></li>
+          </ul>
+        </div>
+        <div class="note-box">
+          <p>📝 Include Google Drive 2TB</p>
+          <p>📝 Support Veo 3</p>
+          <p>📝 Head bisa invite 5 email</p>
+          <p>📝 Full akses AI Pro</p>
+          <p>📝 Full garansi (S&K)</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="order-btns">
+    <a href="https://wa.me/6281998350661?text=Halo%20Abelz%20Shop!%20Saya%20mau%20order%20AI%20Premium%20%F0%9F%A4%96%0AProduk%20%3A%20%0ADurasi%20%3A%20%0ANama%20%3A%20%0ATotal%20%3A%20Rp" target="_blank" class="btn-order btn-wa">📱 Order via WhatsApp</a>
+    <a href="https://t.me/abelzsh0p?text=Halo%20Abelz%20Shop!%20Saya%20mau%20order%20AI%20Premium%20%F0%9F%A4%96%0AProduk%20%3A%20%0ADurasi%20%3A%20%0ANama%20%3A%20%0ATotal%20%3A%20Rp" target="_blank" class="btn-order btn-tg">✈️ Order via Telegram</a>
+  </div>
+</section>
+
+<!-- ═══════════════ GAME ═══════════════ -->
+<section id="game" class="section">
+  <div class="section-header">
+    <div class="section-title">🎮 Top Up Game</div>
+    <div class="section-sub">Top up cepat & aman, harga bersahabat!</div>
+  </div>
+  <div class="cards-grid">
+
+    <!-- FREE FIRE -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-ff">🔥</div>
+        <div>
+          <div class="card-title">FREE FIRE DIAMOND</div>
+          <div class="card-subtitle">Top Up Diamond FF</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="sub-section">
+          <div class="sub-title">Diamond</div>
+          <ul class="price-list">
+            <li><span class="price-name">5 💎</span><span class="price-val">Rp2.500</span></li>
+            <li><span class="price-name">10 💎</span><span class="price-val">Rp3.500</span></li>
+            <li><span class="price-name">25 💎</span><span class="price-val">Rp6.500</span></li>
+            <li><span class="price-name">50 💎</span><span class="price-val">Rp8.500</span></li>
+            <li><span class="price-name">90 💎</span><span class="price-val">Rp14.500</span></li>
+            <li><span class="price-name">100 💎</span><span class="price-val">Rp15.500</span></li>
+            <li><span class="price-name">200 💎</span><span class="price-val">Rp27.500</span></li>
+            <li><span class="price-name">300 💎</span><span class="price-val">Rp41.000</span></li>
+            <li><span class="price-name">405 💎</span><span class="price-val">Rp53.500</span></li>
+            <li><span class="price-name">510 💎</span><span class="price-val">Rp64.500</span></li>
+            <li><span class="price-name">600 💎</span><span class="price-val">Rp78.500</span></li>
+            <li><span class="price-name">790 💎</span><span class="price-val">Rp100.500</span></li>
+            <li><span class="price-name">930 💎</span><span class="price-val">Rp117.000</span></li>
+            <li><span class="price-name">1000 💎</span><span class="price-val">Rp126.000</span></li>
+            <li><span class="price-name">1510 💎</span><span class="price-val">Rp211.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">Item FF</div>
+          <ul class="price-list">
+            <li><span class="price-name">Member Mingguan</span><span class="price-val">Rp30.500</span></li>
+            <li><span class="price-name">Member Bulanan</span><span class="price-val">Rp87.500</span></li>
+            <li><span class="price-name">BP Card</span><span class="price-val">Rp40.500</span></li>
+          </ul>
+        </div>
+        <div class="note-box">
+          <p>✦ Tanyakan stok sebelum order</p>
+          <p>✦ Nominal lain? Chat admin</p>
+          <p>✦ Fast respon saat admin on 🚀</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOBILE LEGENDS -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-ml">⚔️</div>
+        <div>
+          <div class="card-title">MOBILE LEGENDS</div>
+          <div class="card-subtitle">Top Up Diamond & Package</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="sub-section">
+          <div class="sub-title">Diamond</div>
+          <ul class="price-list">
+            <li><span class="price-name">5 💎</span><span class="price-val">Rp2.500</span></li>
+            <li><span class="price-name">10 💎</span><span class="price-val">Rp4.000</span></li>
+            <li><span class="price-name">12 💎</span><span class="price-val">Rp4.500</span></li>
+            <li><span class="price-name">19 💎</span><span class="price-val">Rp6.500</span></li>
+            <li><span class="price-name">28 💎</span><span class="price-val">Rp9.000</span></li>
+            <li><span class="price-name">33 💎</span><span class="price-val">Rp10.500</span></li>
+            <li><span class="price-name">54 💎</span><span class="price-val">Rp16.000</span></li>
+            <li><span class="price-name">71 💎</span><span class="price-val">Rp20.000</span></li>
+            <li><span class="price-name">97 💎</span><span class="price-val">Rp27.000</span></li>
+            <li><span class="price-name">113 💎</span><span class="price-val">Rp31.500</span></li>
+            <li><span class="price-name">128 💎</span><span class="price-val">Rp35.000</span></li>
+            <li><span class="price-name">144 💎</span><span class="price-val">Rp39.500</span></li>
+            <li><span class="price-name">170 💎</span><span class="price-val">Rp46.000</span></li>
+            <li><span class="price-name">219 💎</span><span class="price-val">Rp59.000</span></li>
+            <li><span class="price-name">229 💎</span><span class="price-val">Rp61.500</span></li>
+            <li><span class="price-name">240 💎</span><span class="price-val">Rp64.000</span></li>
+            <li><span class="price-name">257 💎</span><span class="price-val">Rp69.000</span></li>
+            <li><span class="price-name">278 💎</span><span class="price-val">Rp75.000</span></li>
+            <li><span class="price-name">284 💎</span><span class="price-val">Rp76.000</span></li>
+            <li><span class="price-name">296 💎</span><span class="price-val">Rp77.500</span></li>
+            <li><span class="price-name">301 💎</span><span class="price-val">Rp79.000</span></li>
+            <li><span class="price-name">340 💎</span><span class="price-val">Rp89.500</span></li>
+            <li><span class="price-name">345 💎</span><span class="price-val">Rp91.000</span></li>
+            <li><span class="price-name">355 💎</span><span class="price-val">Rp93.500</span></li>
+            <li><span class="price-name">374 💎</span><span class="price-val">Rp99.500</span></li>
+            <li><span class="price-name">381 💎</span><span class="price-val">Rp101.000</span></li>
+            <li><span class="price-name">425 💎</span><span class="price-val">Rp113.000</span></li>
+            <li><span class="price-name">452 💎</span><span class="price-val">Rp120.000</span></li>
+            <li><span class="price-name">510 💎</span><span class="price-val">Rp135.500</span></li>
+            <li><span class="price-name">512 💎</span><span class="price-val">Rp136.000</span></li>
+            <li><span class="price-name">522 💎</span><span class="price-val">Rp138.500</span></li>
+            <li><span class="price-name">568 💎</span><span class="price-val">Rp147.000</span></li>
+            <li><span class="price-name">601 💎</span><span class="price-val">Rp156.000</span></li>
+            <li><span class="price-name">712 💎</span><span class="price-val">Rp185.000</span></li>
+            <li><span class="price-name">750 💎</span><span class="price-val">Rp194.000</span></li>
+            <li><span class="price-name">965 💎</span><span class="price-val">Rp241.500</span></li>
+            <li><span class="price-name">977 💎</span><span class="price-val">Rp246.000</span></li>
+            <li><span class="price-name">960 💎</span><span class="price-val">Rp248.000</span></li>
+            <li><span class="price-name">1.045 💎</span><span class="price-val">Rp262.000</span></li>
+            <li><span class="price-name">1.750 💎</span><span class="price-val">Rp444.500</span></li>
+            <li><span class="price-name">2.180 💎</span><span class="price-val">Rp529.500</span></li>
+            <li><span class="price-name">2.904 💎</span><span class="price-val">Rp709.500</span></li>
+            <li><span class="price-name">3.453 💎</span><span class="price-val">Rp866.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">Package</div>
+          <ul class="price-list">
+            <li><span class="price-name">First Top Up 50+bonus</span><span class="price-val">Rp17.500</span></li>
+            <li><span class="price-name">First Top Up 150+bonus</span><span class="price-val">Rp48.000</span></li>
+            <li><span class="price-name">First Top Up 250+bonus</span><span class="price-val">Rp76.500</span></li>
+            <li><span class="price-name">First Top Up 500+bonus</span><span class="price-val">Rp151.500</span></li>
+            <li><span class="price-name">Weekly Diamond Pass</span><span class="price-val">Rp30.500</span></li>
+            <li><span class="price-name">Twilight Pass</span><span class="price-val">Rp148.500</span></li>
+            <li><span class="price-name">Starlight Fast</span><span class="price-val">Rp80.000</span></li>
+            <li><span class="price-name">Starlight Delay</span><span class="price-val">Rp37.000</span></li>
+          </ul>
+        </div>
+        <div class="note-box">
+          <p>✦ Via ID & Server</p>
+          <p>✦ Region Indonesia</p>
+          <p>✦ Bisa fast / slow & tumpuk</p>
+          <p>✦ No refund / no cancel</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROBLOX -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-roblox">🎀</div>
+        <div>
+          <div class="card-title">ROBLOX TOP UP</div>
+          <div class="card-subtitle">Robux & Premium</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="sub-section">
+          <div class="sub-title">Gamepass</div>
+          <ul class="price-list">
+            <li><span class="price-name">100 Robux</span><span class="price-val">Rp17.000</span></li>
+            <li><span class="price-name">200 Robux</span><span class="price-val">Rp31.000</span></li>
+            <li><span class="price-name">300 Robux</span><span class="price-val">Rp44.000</span></li>
+            <li><span class="price-name">400 Robux</span><span class="price-val">Rp58.000</span></li>
+            <li><span class="price-name">500 Robux</span><span class="price-val">Rp72.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">Vilog</div>
+          <ul class="price-list">
+            <li><span class="price-name">80 Robux</span><span class="price-val">Rp17.000</span></li>
+            <li><span class="price-name">160 Robux</span><span class="price-val">Rp32.000</span></li>
+            <li><span class="price-name">240 Robux</span><span class="price-val">Rp47.000</span></li>
+            <li><span class="price-name">320 Robux</span><span class="price-val">Rp62.000</span></li>
+            <li><span class="price-name">500 Robux</span><span class="price-val">Rp75.000</span></li>
+            <li><span class="price-name">1000 Robux</span><span class="price-val">Rp140.000</span></li>
+            <li><span class="price-name">1500 Robux</span><span class="price-val">Rp208.000</span></li>
+            <li><span class="price-name">2000 Robux</span><span class="price-val">Rp277.000</span></li>
+            <li><span class="price-name">2500 Robux</span><span class="price-val">Rp344.000</span></li>
+            <li><span class="price-name">5000 Robux</span><span class="price-val">Rp685.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">Premium</div>
+          <ul class="price-list">
+            <li><span class="price-name">450 Robux + Premium</span><span class="price-val">Rp72.000</span></li>
+            <li><span class="price-name">1000 Robux + Premium</span><span class="price-val">Rp140.000</span></li>
+            <li><span class="price-name">2200 Robux + Premium</span><span class="price-val">Rp277.000</span></li>
+          </ul>
+        </div>
+        <div class="note-box">
+          <p>✦ Gamepass delay 5–7 hari</p>
+          <p>✦ Wajib standby (OTP)</p>
+          <p>✦ 3 menit no respon = skip antrian</p>
+          <p>✦ Tanyakan stok sebelum TF</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="order-btns">
+    <a href="https://wa.me/6281998350661?text=Halo%20Abelz%20Shop!%20Saya%20mau%20Top%20Up%20Game%20%F0%9F%8E%AE%0AGame%20%3A%20%0ANominal%20%3A%20%0AID%20Game%20%3A%20%0AServer%20%3A%20%0ATotal%20%3A%20Rp" target="_blank" class="btn-order btn-wa">📱 Order via WhatsApp</a>
+    <a href="https://t.me/abelzsh0p?text=Halo%20Abelz%20Shop!%20Saya%20mau%20Top%20Up%20Game%20%F0%9F%8E%AE%0AGame%20%3A%20%0ANominal%20%3A%20%0AID%20Game%20%3A%20%0AServer%20%3A%20%0ATotal%20%3A%20Rp" target="_blank" class="btn-order btn-tg">✈️ Order via Telegram</a>
+  </div>
+</section>
+
+<!-- ═══════════════ KEBSOS ═══════════════ -->
+<section id="kebsos" class="section">
+  <div class="section-header">
+    <div class="section-title">💫 Kebsos</div>
+    <div class="section-sub">Jasa boost sosial media cepat & aman 💙</div>
+  </div>
+  <div class="cards-grid">
+
+    <!-- INSTAGRAM -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-ig">📱</div>
+        <div>
+          <div class="card-title">INSTAGRAM SERVICES</div>
+          <div class="card-subtitle">Followers · Likes · Views</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="sub-section">
+          <div class="sub-title">👥 Followers — Nondrop</div>
+          <ul class="price-list">
+            <li><span class="price-name">100</span><span class="price-val">Rp7.000</span></li>
+            <li><span class="price-name">200</span><span class="price-val">Rp10.000</span></li>
+            <li><span class="price-name">300</span><span class="price-val">Rp13.500</span></li>
+            <li><span class="price-name">400</span><span class="price-val">Rp16.500</span></li>
+            <li><span class="price-name">500</span><span class="price-val">Rp19.500</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">👥 Followers — Refill (Garansi)</div>
+          <ul class="price-list">
+            <li><span class="price-name">100</span><span class="price-val">Rp6.000</span></li>
+            <li><span class="price-name">200</span><span class="price-val">Rp8.500</span></li>
+            <li><span class="price-name">300</span><span class="price-val">Rp11.000</span></li>
+            <li><span class="price-name">400</span><span class="price-val">Rp13.500</span></li>
+            <li><span class="price-name">500</span><span class="price-val">Rp16.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">👥 Followers — No Refill</div>
+          <ul class="price-list">
+            <li><span class="price-name">100</span><span class="price-val">Rp5.000</span></li>
+            <li><span class="price-name">200</span><span class="price-val">Rp6.500</span></li>
+            <li><span class="price-name">300</span><span class="price-val">Rp8.000</span></li>
+            <li><span class="price-name">400</span><span class="price-val">Rp9.500</span></li>
+            <li><span class="price-name">500</span><span class="price-val">Rp11.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">❤️ Likes — No Drop</div>
+          <ul class="price-list">
+            <li><span class="price-name">100</span><span class="price-val">Rp4.500</span></li>
+            <li><span class="price-name">200</span><span class="price-val">Rp5.500</span></li>
+            <li><span class="price-name">300</span><span class="price-val">Rp6.500</span></li>
+            <li><span class="price-name">400</span><span class="price-val">Rp7.500</span></li>
+            <li><span class="price-name">500</span><span class="price-val">Rp8.500</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">❤️ Likes — Refill (Garansi)</div>
+          <ul class="price-list">
+            <li><span class="price-name">100</span><span class="price-val">Rp3.500</span></li>
+            <li><span class="price-name">200</span><span class="price-val">Rp4.500</span></li>
+            <li><span class="price-name">300</span><span class="price-val">Rp5.500</span></li>
+            <li><span class="price-name">400</span><span class="price-val">Rp6.500</span></li>
+            <li><span class="price-name">500</span><span class="price-val">Rp7.500</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">❤️ Likes — No Refill</div>
+          <ul class="price-list">
+            <li><span class="price-name">100</span><span class="price-val">Rp3.000</span></li>
+            <li><span class="price-name">200</span><span class="price-val">Rp4.000</span></li>
+            <li><span class="price-name">300</span><span class="price-val">Rp4.500</span></li>
+            <li><span class="price-name">400</span><span class="price-val">Rp5.500</span></li>
+            <li><span class="price-name">500</span><span class="price-val">Rp6.500</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">👀 Views</div>
+          <ul class="price-list">
+            <li><span class="price-name">100</span><span class="price-val">Rp3.000</span></li>
+            <li><span class="price-name">200</span><span class="price-val">Rp4.000</span></li>
+            <li><span class="price-name">300</span><span class="price-val">Rp5.000</span></li>
+            <li><span class="price-name">400</span><span class="price-val">Rp6.000</span></li>
+            <li><span class="price-name">500</span><span class="price-val">Rp7.000</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIKTOK -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-tiktok">🎵</div>
+        <div>
+          <div class="card-title">TIKTOK SERVICES</div>
+          <div class="card-subtitle">Followers · Likes · Views · Favorites</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="sub-section">
+          <div class="sub-title">👥 Followers — Nondrop</div>
+          <ul class="price-list">
+            <li><span class="price-name">100</span><span class="price-val">Rp8.000</span></li>
+            <li><span class="price-name">200</span><span class="price-val">Rp12.000</span></li>
+            <li><span class="price-name">300</span><span class="price-val">Rp15.500</span></li>
+            <li><span class="price-name">400</span><span class="price-val">Rp18.500</span></li>
+            <li><span class="price-name">500</span><span class="price-val">Rp22.500</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">👥 Followers — Refill (Garansi)</div>
+          <ul class="price-list">
+            <li><span class="price-name">100</span><span class="price-val">Rp7.500</span></li>
+            <li><span class="price-name">200</span><span class="price-val">Rp9.000</span></li>
+            <li><span class="price-name">300</span><span class="price-val">Rp11.500</span></li>
+            <li><span class="price-name">400</span><span class="price-val">Rp14.000</span></li>
+            <li><span class="price-name">500</span><span class="price-val">Rp16.500</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">👥 Followers — No Refill</div>
+          <ul class="price-list">
+            <li><span class="price-name">100</span><span class="price-val">Rp6.500</span></li>
+            <li><span class="price-name">200</span><span class="price-val">Rp8.500</span></li>
+            <li><span class="price-name">300</span><span class="price-val">Rp10.500</span></li>
+            <li><span class="price-name">400</span><span class="price-val">Rp12.500</span></li>
+            <li><span class="price-name">500</span><span class="price-val">Rp14.500</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">❤️ Likes — No Drop</div>
+          <ul class="price-list">
+            <li><span class="price-name">100</span><span class="price-val">Rp5.500</span></li>
+            <li><span class="price-name">200</span><span class="price-val">Rp6.500</span></li>
+            <li><span class="price-name">300</span><span class="price-val">Rp7.500</span></li>
+            <li><span class="price-name">400</span><span class="price-val">Rp8.500</span></li>
+            <li><span class="price-name">500</span><span class="price-val">Rp9.500</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">❤️ Likes — Refill (Garansi)</div>
+          <ul class="price-list">
+            <li><span class="price-name">100</span><span class="price-val">Rp5.000</span></li>
+            <li><span class="price-name">200</span><span class="price-val">Rp6.000</span></li>
+            <li><span class="price-name">300</span><span class="price-val">Rp7.000</span></li>
+            <li><span class="price-name">400</span><span class="price-val">Rp8.000</span></li>
+            <li><span class="price-name">500</span><span class="price-val">Rp9.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">❤️ Likes — No Refill</div>
+          <ul class="price-list">
+            <li><span class="price-name">100</span><span class="price-val">Rp4.000</span></li>
+            <li><span class="price-name">200</span><span class="price-val">Rp4.500</span></li>
+            <li><span class="price-name">300</span><span class="price-val">Rp5.000</span></li>
+            <li><span class="price-name">400</span><span class="price-val">Rp5.500</span></li>
+            <li><span class="price-name">500</span><span class="price-val">Rp6.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">👀 Views</div>
+          <ul class="price-list">
+            <li><span class="price-name">1.000</span><span class="price-val">Rp4.000</span></li>
+            <li><span class="price-name">2.000</span><span class="price-val">Rp5.000</span></li>
+            <li><span class="price-name">5.000</span><span class="price-val">Rp6.000</span></li>
+            <li><span class="price-name">10.000</span><span class="price-val">Rp9.000</span></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-title">⭐ Favorites</div>
+          <ul class="price-list">
+            <li><span class="price-name">100</span><span class="price-val">Rp4.000</span></li>
+            <li><span class="price-name">200</span><span class="price-val">Rp6.000</span></li>
+            <li><span class="price-name">300</span><span class="price-val">Rp8.000</span></li>
+            <li><span class="price-name">400</span><span class="price-val">Rp10.000</span></li>
+            <li><span class="price-name">500</span><span class="price-val">Rp12.000</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-  <div style="display:flex; justify-content:center; gap:48px; flex-wrap:wrap; position:relative; z-index:1;">
-    <div style="text-align:center;">
-      <div style="font-size:2rem; margin-bottom:6px;">💎</div>
-      <div style="font-family:'Sora',sans-serif; font-weight:700; font-size:1rem;">100% Legal</div>
-      <div style="font-size:0.78rem; color:var(--text-muted);">Semua produk resmi</div>
-    </div>
-    <div style="text-align:center;">
-      <div style="font-size:2rem; margin-bottom:6px;">🛡️</div>
-      <div style="font-family:'Sora',sans-serif; font-weight:700; font-size:1rem;">Full Garansi</div>
-      <div style="font-size:0.78rem; color:var(--text-muted);">Sesuai durasi pesanan</div>
-    </div>
-    <div style="text-align:center;">
-      <div style="font-size:2rem; margin-bottom:6px;">⚡</div>
-      <div style="font-family:'Sora',sans-serif; font-weight:700; font-size:1rem;">Proses Cepat</div>
-      <div style="font-size:0.78rem; color:var(--text-muted);">Maks 30 menit</div>
-    </div>
-    <div style="text-align:center;">
-      <div style="font-size:2rem; margin-bottom:6px;">🤝</div>
-      <div style="font-family:'Sora',sans-serif; font-weight:700; font-size:1rem;">Anti Tipu</div>
-      <div style="font-size:0.78rem; color:var(--text-muted);">Terpercaya & amanah</div>
-    </div>
+  <div class="note-box" style="max-width:640px;margin:1.5rem auto 0;font-size:0.85rem;border-radius:20px;padding:1.1rem 1.4rem;">
+    <h4 style="color:var(--deep);font-size:0.85rem;margin-bottom:0.6rem;">📋 Info Penting</h4>
+    <p>✦ Harap konfirmasi sebelum order</p>
+    <p>✦ Proses maksimal 1×24 jam</p>
+    <p>✦ Views & favorit 1–4 hari</p>
+    <p>✦ Bisa order bertahap (tumpuk)</p>
+    <p>✦ Refill = bergaransi | No refill = tanpa garansi</p>
+    <p>✦ Proses menggunakan sistem</p>
   </div>
-</div>
 
-<!-- FOOTER -->
+  <div class="order-btns">
+    <a href="https://wa.me/6281998350661?text=Halo%20Abelz%20Shop!%20Saya%20mau%20order%20Kebsos%20%F0%9F%92%AB%0APlatform%20%3A%20%0ALayanan%20%3A%20%0AJumlah%20%3A%20%0ALink%20Akun%20%3A%20%0ATotal%20%3A%20Rp" target="_blank" class="btn-order btn-wa">📱 Order via WhatsApp</a>
+    <a href="https://t.me/abelzsh0p?text=Halo%20Abelz%20Shop!%20Saya%20mau%20order%20Kebsos%20%F0%9F%92%AB%0APlatform%20%3A%20%0ALayanan%20%3A%20%0AJumlah%20%3A%20%0ALink%20Akun%20%3A%20%0ATotal%20%3A%20Rp" target="_blank" class="btn-order btn-tg">✈️ Order via Telegram</a>
+  </div>
+</section>
+
 <footer>
-  <strong>ABELZ SHOP</strong> — Premium Digital Store &nbsp;·&nbsp; WA: 0819 9835 0661 &nbsp;·&nbsp; Semua harga sudah termasuk pajak · 2025
+  <div class="logo-foot">Abelz Shop ☁️</div>
+  <p>💌 WA: 081998350661 &nbsp;|&nbsp; ✈️ Telegram: @abelzsh0p</p>
+  <p style="margin-top:0.4rem;font-size:0.78rem;">© 2025 Abelz Shop — Terpercaya & Terjangkau ✨</p>
 </footer>
 
+<script>
+function showSection(id, el) {
+  // Hide all sections
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  // Remove active from all nav & bottom-nav links
+  document.querySelectorAll('nav a, .bottom-nav a').forEach(a => a.classList.remove('active'));
+  // Show selected section
+  document.getElementById(id).classList.add('active');
+  // Mark nav active (both header nav and bottom nav)
+  el.classList.add('active');
+  // Sync bottom-nav active
+  const bn = document.querySelector('.bottom-nav a[onclick*="' + id + '"]');
+  if (bn) bn.classList.add('active');
+  // Sync header nav active
+  const hn = document.querySelector('header nav a[onclick*="' + id + '"]');
+  if (hn) hn.classList.add('active');
+  // Scroll to top
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  return false;
+}
+</script>
 </body>
 </html>

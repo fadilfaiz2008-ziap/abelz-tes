@@ -67,7 +67,7 @@ const inner=outer.map(p=>[Math.max(0,p[0]-.14),p[1]<.6?p[1]+.35:p[1]]);
 const body=lathe(outer,glassMat);body.renderOrder=2;
 const wall=lathe(inner,glassMat);wall.renderOrder=2;
 const liquid=lathe([[0,.4],...arc(1.19,.95,.55,-90,0,8),[1.74,8.1],[0,8.1]],liquidMat);liquid.renderOrder=1;
-const tube=new THREE.Mesh(new THREE.CylinderGeometry(.07,.07,9.4,16),plastic);tube.position.set(.3,5.2,0);
+const tube=new THREE.Mesh(new THREE.CylinderGeometry(.1,.1,9.4,16),flat(0xffffff,0x8f9bc8,1,1,true));tube.position.set(.3,5.2,0);
 bottle.add(body,wall,liquid,tube);
 
 const collar=lathe([[.95,9.35],[1.14,9.35],[1.14,10.4],[1.08,10.5],[.7,10.5],[.7,10.55]],plastic);
@@ -78,7 +78,7 @@ bottle.add(collar,stem,head,nozzle);
 [9.9,10.2].forEach(y=>{const g=new THREE.Mesh(new THREE.TorusGeometry(1.145,.03,8,96).rotateX(Math.PI/2),plastic);g.position.y=y;bottle.add(g);});
 const cap=lathe([[.88,10.5],[1,10.5],[1,12.9],...arc(.8,12.9,.2,0,90,8),[0,13.1]],capMat);cap.renderOrder=3;bottle.add(cap);
 
-function setLiquid(blue){liquidMat.color.set(blue?0x92ACF2:0xe3edf7);liquidMat.opacity=blue?.85:.25;$('#bLiq').textContent='Cairan: '+(blue?'Biru Telang':'Bening');}
+function setLiquid(blue){liquidMat.color.set(blue?0x92ACF2:0xe3edf7);liquidMat.opacity=blue?.5:.25;$('#bLiq').textContent='Cairan: '+(blue?'Biru Telang':'Bening');}
 new THREE.TextureLoader().load(IMG,tex=>{
   tex.anisotropy=renderer.capabilities.getMaxAnisotropy();
   const rl=R+.015,h=2*Math.PI*rl*tex.image.height/tex.image.width;
